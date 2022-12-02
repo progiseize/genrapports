@@ -1,0 +1,71 @@
+# <GenRapports>
+# Copyright (C) 2022 ProgiSeize <contact@progiseize.fr>
+
+# This program and files/directory inner it is free software: you can 
+# redistribute it and/or modify it under the terms of the 
+# GNU Affero General Public License (AGPL) as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU AGPL for more details.
+# You should have received a copy of the GNU AGPL
+# along with this program.  If not, see <https://www.gnu.org/licenses/agpl-3.0.html>.
+
+
+# Dolibarr language file - fr_FR - genrapports
+
+Module300306Name = GenRapports
+
+# PAGE CONFIG
+gr_setup_title = Options générales
+gr_setup_howmany_numbers = Combien de numéros utliser pour les numéros de comptes ?
+
+# TYPES D'EXPORTS
+gr_export_type_bilan = Bilan
+gr_export_type_compteres = Compte de Résultat
+gr_export_type_sig = Solde Intermédiaire de Gestion
+
+gr_balance_aux = Balance Auxiliaire
+gr_borp = Bénéfice ou perte
+
+# FICHIERS
+gr_file_tablabel_compteaux = Compte auxiliaire
+gr_file_tablabel_label = libelle
+gr_file_tablabel_credit = Credit
+gr_file_tablabel_debit = Debit
+gr_file_tablabel_diff = Difference
+
+# INDEX
+gr_index_title = Génération Bilan / Compte de résultats / Solde Intermédiaire de Gestion
+gr_index_export_title = Paramètres export
+gr_index_export_titledesc = Choisissez les paramètres de l'export à effectuer
+gr_index_export_type = Type d'export
+gr_index_export_datestart = Date début
+gr_index_export_dateend = Date de fin
+gr_index_export_showdetail = Afficher le détail par compte
+
+gr_button_generate = Générer
+gr_button_downloadfile = Télécharger le fichier
+gr_button_downloadfile_bilan = Télécharger le bilan
+gr_button_downloadfile_compte_resultat = Télécharger le compte de résultat
+gr_button_downloadfile_sig = Télécharger le SIG
+
+gr_index_rapport_title = Rapport
+gr_index_rapport_generatetime = (Généré le %s à %s)
+
+# RESULTATS
+gr_results_allrequests_ok = Toutes les requêtes ont été éxecutées.
+gr_results_save_copydone = Les données ont été copiées
+gr_results_save_nberrors = Nombre erreurs
+
+# ERREURS
+gr_error_maj_accounts = Une erreur est survenue lors de la mise à jour des comptes
+gr_error_crea_folder = Une erreur est survenue lors de la création des dossiers
+gr_error_withlines = Une erreur est survenue. Les lignes d'erreurs sont les suivantes:
+
+# TABS
+gr_configuration = Configuration
+gr_reports = Rapports Personnalisés
+

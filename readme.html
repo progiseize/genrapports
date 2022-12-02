@@ -1,0 +1,108 @@
+<table style="background-color: #fff; border: none;margin-bottom: 16px;" width="100%" cellspacing="0">
+	<tbody>
+		<tr>
+			<td style="padding: 16px;text-align: center;"><a href="https://progiseize.fr/" target="_blank"><img style="margin-left: auto; margin-right: auto;max-width: 640px;" src="https://progiseize.fr/wp-content/themes/progiseize_maintenance/assets/images/logo-progiseize-dark.svg" alt=""></a></td>
+		</tr>
+	</tbody>
+</table>
+
+<table style="border: 1px solid #666;border-collapse: collapse; color: #051641" width="100%" cellspacing="0">
+	<tbody>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><strong>Description :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';">
+				Ce module vous permet de générer instantanément et à tout moment les documents comptables suivants à partir des informations enregistrés en comptabilité dans Dolibarr :
+				<ul>
+					<li>Compte de résultat</li>
+					<li>Bilan</li>
+					<li>Balance auxiliaire clients</li>
+					<li>Balance auxiliaire fournisseurs</li>
+				</ul>
+				La présentation et les numéros de comptes utilisés sont ceux de la comptabilité <img src="https://www.dolibarr.fr/images/stories/flags/fr.gif" alt="">&nbsp;française. <br/>
+				Les documents sont générés de date à date. La date est paramétrable, ce qui permet de sortir les documents pour des périodes spécifiques, sur des exercices décalés ou sur plusieurs exercices.
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';" nowrap="nowrap"><strong>Version :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><span class="module_version_desc"> 1.4</span></td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';" nowrap="nowrap"><strong> Editeur / Licence :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"> Progiseize / <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">AGPL v3</a></td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><strong>Pré-requis :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';">
+				<ul>
+					<li>Version minimum supportée de Dolibarr : <span class="dolibarr_min_desc">12.0.x</span></li>
+					<li>Version maximum : <span class="dolibarr_max_desc">15.0.x</span></li>
+					<li>Dolibarr : module du core "Comptabilité (partie double)" activé</li>
+					<li>Module Progiseize (gratuit) installé et activé - [<a href="https://github.com/progiseize/modules/tree/main/progiseize" target="_blank">GitHub</a>]</li>
+					<li>Prérequis comptables et techniques : </li>
+					<ul>
+						<li>Seules les écritures du grand livre sont prises en compte : les lignes à lier doivent être liées, et les journaux transférés en comptabilité</li>
+						<li>Un accès à la base de données est nécessaire pour les points suivants. De multiples tables de la base de données sont concernées.</li>
+						<ul>
+							<li>Les codes comptables doivent être homogènes et cohérents.</li>
+							<li>Les codes comptables auxiliaires doivent être homogènes et cohérents.</li>
+							<li>Il ne doit pas y avoir de doublon de code comptable.</li>
+						</ul>
+					</ul>
+				</ul>
+				Nous conseillons fortement, si disponible, de repartir du dernier FEC (Fichier des Ecritures Comptables) validé par le comptable afin de :
+				<li>Se baser sur les codes utilisés par le comptable</li>
+				<li>Lors de la première installation : réintégrer par différentiel (entre les informations du grand livre Dolibarr et le FEC validé) une écriture d'OD afin de de partir sur un bilan validé en début d'exercice</li>
+				<li>Pour les exercices comptables suivants : le comptable pourra exporter le FEC de Dolibarr, travailler sur son logiciel comptable, puis fournir directement une liste des OD qu'il a réalisé et qui sont à réintégrer dans Dolibarr</li>
+				<br/>
+				<strong>Ces opérations demandent un savoir-faire technique et comptable avancé, ainsi que des opérations en base de données.</strong><br/>
+				Nous proposons une prestation, distincte du présent module, afin de réaliser ces différentes opérations.<br>
+				Progiseize décline toute responsabilité en cas de mauvaise manipulation réalisée par un tiers.
+			</td>
+		</tr>
+
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><strong>Support :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';">
+				contact@progiseize.fr<br/><br/>
+				Nous proposons une prestation de mise en place des différents prérequis sur votre installation Dolibarr.<br/>
+				Cette prestation dure généralement entre 1 et 5j, selon les différentes typologies de clients.<br/>
+				Le tarif est de 990€HT/j. Le prix du module est déduit du coût de la prestation.
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><strong>Langues :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';">
+				<ul>
+					<li><img src="https://www.dolibarr.fr/images/stories/flags/fr.gif" alt="">&nbsp;Français</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><strong>Installation :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';">
+				<ul>
+					<li>Téléchargez le fichier archive du module "Progiseize" depuis le site [<a href="https://github.com/progiseize/modules/tree/main/progiseize" target="_blank">GitHub</a>] - gratuit</li>
+					<li>Téléchargez le fichier archive du module "module_genrapports-x.y.zip" depuis le site web dolistore.com</li>
+					<li>Utilisez l'outil de déploiement de modules intégré à Dolibarr pour uploader les fichiers</li>
+					<li>Activez le module Progiseize puis le module GenRapports</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';"><strong>Mise à jour :</strong></td>
+			<td style="vertical-align: top; border: 1px solid #051641;font-family: 'Open Sans';">
+				<ul>
+					<li><strong>Disponibilité</strong> :<br/>
+					Nos modules intègrent une fonction qui vous permet d'identifier rapidement si votre environnement dispose de leur dernière version.<br>
+					</li>
+				</ul>
+				<ul>
+					<li><strong>Procédure</strong> :<br/>
+						L'accès aux mises à jour de nos modules est gratuit pendant 6 mois (182j) à compter de leur date d'achat sur le Dolistore.<br/>
+						Avant toute mise à jour, assurez-vous que le module soit officiellement compatible avec la version de Dolibarr sur laquelle vous souhaitez l'installer.
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
