@@ -1,71 +1,225 @@
-# <GenRapports>
-# Copyright (C) 2022 ProgiSeize <contact@progiseize.fr>
-
-# This program and files/directory inner it is free software: you can 
-# redistribute it and/or modify it under the terms of the 
-# GNU Affero General Public License (AGPL) as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU AGPL for more details.
-# You should have received a copy of the GNU AGPL
-# along with this program.  If not, see <https://www.gnu.org/licenses/agpl-3.0.html>.
-
-
-# Dolibarr language file - fr_FR - genrapports
-
-Module300306Name = GenRapports
-
-# PAGE CONFIG
-gr_setup_title = Options générales
-gr_setup_howmany_numbers = Combien de numéros utliser pour les numéros de comptes ?
-
-# TYPES D'EXPORTS
-gr_export_type_bilan = Bilan
-gr_export_type_compteres = Compte de Résultat
-gr_export_type_sig = Solde Intermédiaire de Gestion
-
-gr_balance_aux = Balance Auxiliaire
-gr_borp = Bénéfice ou perte
-
-# FICHIERS
-gr_file_tablabel_compteaux = Compte auxiliaire
-gr_file_tablabel_label = libelle
-gr_file_tablabel_credit = Credit
-gr_file_tablabel_debit = Debit
-gr_file_tablabel_diff = Difference
-
-# INDEX
-gr_index_title = Génération Bilan / Compte de résultats / Solde Intermédiaire de Gestion
-gr_index_export_title = Paramètres export
-gr_index_export_titledesc = Choisissez les paramètres de l'export à effectuer
-gr_index_export_type = Type d'export
-gr_index_export_datestart = Date début
-gr_index_export_dateend = Date de fin
-gr_index_export_showdetail = Afficher le détail par compte
-
-gr_button_generate = Générer
-gr_button_downloadfile = Télécharger le fichier
-gr_button_downloadfile_bilan = Télécharger le bilan
-gr_button_downloadfile_compte_resultat = Télécharger le compte de résultat
-gr_button_downloadfile_sig = Télécharger le SIG
-
-gr_index_rapport_title = Rapport
-gr_index_rapport_generatetime = (Généré le %s à %s)
-
-# RESULTATS
-gr_results_allrequests_ok = Toutes les requêtes ont été éxecutées.
-gr_results_save_copydone = Les données ont été copiées
-gr_results_save_nberrors = Nombre erreurs
-
-# ERREURS
-gr_error_maj_accounts = Une erreur est survenue lors de la mise à jour des comptes
-gr_error_crea_folder = Une erreur est survenue lors de la création des dossiers
-gr_error_withlines = Une erreur est survenue. Les lignes d'erreurs sont les suivantes:
-
-# TABS
-gr_configuration = Configuration
-gr_reports = Rapports Personnalisés
-
+Module300306Name=GenRapports
+gr_setup_title=Options générales
+gr_setup_howmany_numbers=Combien de numéros utliser pour les numéros de comptes ?
+gr_export_type_bilan=Bilan
+gr_export_type_compteres=Compte de Résultat
+gr_export_type_sig=Solde Intermédiaire de Gestion
+gr_balance_aux=Balance Auxiliaire
+gr_borp=Bénéfice ou perte
+gr_file_tablabel_compteaux=Compte auxiliaire
+gr_file_tablabel_label=libelle
+gr_file_tablabel_credit=Credit
+gr_file_tablabel_debit=Debit
+gr_file_tablabel_diff=Difference
+gr_index_title=Génération Bilan / Compte de résultats / Solde Intermédiaire de Gestion
+gr_index_export_title=Paramètres export
+gr_index_export_titledesc=Choisissez les paramètres de l'export à effectuer
+gr_index_export_type=Type d'export
+gr_index_export_datestart=Date début
+gr_index_export_dateend=Date de fin
+gr_index_export_showdetail=Afficher le détail par compte
+gr_button_generate=Générer
+gr_button_downloadfile=Télécharger le fichier
+gr_button_downloadfile_bilan=Télécharger le bilan
+gr_button_downloadfile_compte_resultat=Télécharger le compte de résultat
+gr_button_downloadfile_sig=Télécharger le SIG
+gr_index_rapport_title=Rapport
+gr_index_rapport_generatetime=(Généré le %s à %s)
+gr_results_allrequests_ok=Toutes les requêtes ont été éxecutées.
+gr_results_save_copydone=Les données ont été copiées
+gr_results_save_nberrors=Nombre erreurs
+gr_error_maj_accounts=Une erreur est survenue lors de la mise à jour des comptes
+gr_error_crea_folder=Une erreur est survenue lors de la création des dossiers
+gr_error_withlines=Une erreur est survenue. Les lignes d'erreurs sont les suivantes:
+gr_configuration=Configuration
+gr_reports=Rapports Personnalisés
+gr_error_enddate_morethan_startdate=The start date is later than the end date
+gr_error_morethan_oneyear=Date interval > 12 months
+gr_groupbilan_10=Uncalled committed capital
+gr_groupbilan_20= Administration fees
+gr_groupbilan_21=Research and development costs
+gr_groupbilan_22=Concessions patents licenses trademarks processes rights and similar values
+gr_groupbilan_23=Goodwill (including lease rights)
+gr_groupbilan_24=Others
+gr_groupbilan_25=Advances and deposits
+gr_groupbilan_30=Intangible assets
+gr_groupbilan_40=Lands
+gr_groupbilan_41=Buildings
+gr_groupbilan_42=Technical installations, industrial equipment and tools
+gr_groupbilan_43=Others
+gr_groupbilan_44=Investments in progress
+gr_groupbilan_45=Advances and deposits
+gr_groupbilan_50=Fixed assets
+gr_groupbilan_60=Holdings
+gr_groupbilan_61=Receivables related to equity investments
+gr_groupbilan_62=Other fixed securities
+gr_groupbilan_63=Loans
+gr_groupbilan_64=Others
+gr_groupbilan_70=Financial fixed assets (of which at less than one year)
+gr_groupbilan_80=Total fixed assets
+gr_groupbilan_90=Raw materials and other supplies
+gr_groupbilan_91=Work in progress (goods and services)
+gr_groupbilan_92=Intermediate and finished products
+gr_groupbilan_93=Wares
+gr_groupbilan_94=Advances and prepayments on orders
+gr_groupbilan_100=Inventories and work in progress
+gr_groupbilan_110=Trade receivables and related accounts (sales or provision of services)
+gr_groupbilan_111=Others
+gr_groupbilan_112=Subscribed capital called but not paid
+gr_groupbilan_120=Receivables (including more than one year)
+gr_groupbilan_130=Own shares
+gr_groupbilan_131=Other titles
+gr_groupbilan_132=Treasury instruments
+gr_groupbilan_133=Availability
+gr_groupbilan_134=Prepaid expenses (including more than one year)
+gr_groupbilan_140=Marketable securities
+gr_groupbilan_150=TOTAL CURRENT ASSETS
+gr_groupbilan_160=Expenses to be spread over several fiscal years (total 3)
+gr_groupbilan_170=Bond redemption premiums (total 4)
+gr_groupbilan_180=Translation differences Assets (total 5)
+gr_groupbilan_190=GRAND TOTAL BALANCE SHEET ASSETS
+gr_groupbilan_200=Capital (of which paid)
+gr_groupbilan_214=carry forward
+gr_groupbilan_201=Merger or contribution issue premiums
+gr_groupbilan_202=Revaluation differences
+gr_groupbilan_203=Equivalence differences
+gr_groupbilan_210=Legal reserve
+gr_groupbilan_211=Statutory or contractual reserves
+gr_groupbilan_212=Regulated reserves
+gr_groupbilan_213=Others
+gr_groupbilan_215=YEAR PROFIT (profit or loss)
+gr_groupbilan_216=Investment grants
+gr_groupbilan_217=Regulated provisions
+gr_groupbilan_220=TOTAL OWNER'S EQUITY
+gr_groupbilan_240=Proceeds from equity securities issues
+gr_groupbilan_241=Conditional advances
+gr_groupbilan_250=Total 1a
+gr_groupbilan_260=Risk provisions
+gr_groupbilan_261=Provisions for expenses
+gr_groupbilan_270=Total 2
+gr_groupbilan_280=Convertible bond issues
+gr_groupbilan_281=Other bond issues
+gr_groupbilan_282=Loans and debts with credit institutions
+gr_groupbilan_283=Miscellaneous loans and financial debts (including equity loans)
+gr_groupbilan_284=Advances and down payments received on orders in progress
+gr_groupbilan_285=Trade payables and related accounts
+gr_groupbilan_286=Staff
+gr_groupbilan_287=Social organizations
+gr_groupbilan_288=State and turnover taxes
+gr_groupbilan_289=Other tax and social security debts
+gr_groupbilan_290= Other debts
+gr_groupbilan_300=TOTAL DEBTS
+gr_groupbilan_320=GRAND TOTAL LIABILITIES (1+1a+2+3+4)
+gr_groupcompteresult_10=Sale of goods
+gr_groupcompteresult_11=Goods sold
+gr_groupcompteresult_12=Services sold
+gr_groupcompteresult_20=Net sales
+gr_groupcompteresult_30=Stocked production
+gr_groupcompteresult_31=Immobilised production
+gr_groupcompteresult_32=Operating grants
+gr_groupcompteresult_33=Reversals of provisions
+gr_groupcompteresult_34=Other products
+gr_groupcompteresult_40=Total operating income (I)
+gr_groupcompteresult_50=Purchases of goods
+gr_groupcompteresult_51=Change in inventory of goods
+gr_groupcompteresult_52=Purchases of raw materials
+gr_groupcompteresult_53=Inventory changes
+gr_groupcompteresult_54=Other external charges
+gr_groupcompteresult_55=Taxes other and payments
+gr_groupcompteresult_56=Salaries and treatments
+gr_groupcompteresult_57=Social charges
+gr_groupcompteresult_58=Depreciation and amortization allowances
+gr_groupcompteresult_59=Allocations to provisions
+gr_groupcompteresult_60=Other expenses
+gr_groupcompteresult_70=Total operating expenses (II)
+gr_groupcompteresult_80=OPERATING INCOME (I-II)
+gr_groupcompteresult_90=Attributed profit or transferred loss (III)
+gr_groupcompteresult_91=Loss incurred or benefit transferred (IV)
+gr_groupcompteresult_92=Participation financial products
+gr_groupcompteresult_93=Financial income from other transferable securities and receivables from fixed assets
+gr_groupcompteresult_94=other interests and similar products
+gr_groupcompteresult_95=Reversals of provisions and depreciations and transfers of expenses
+gr_groupcompteresult_96=Positive exchange differences
+gr_groupcompteresult_97=Net proceeds on sale of marketable securities
+gr_groupcompteresult_100=Total financial products (V)
+gr_groupcompteresult_110=Allocations to amortization, depreciation and provisions
+gr_groupcompteresult_111=Interest and similar charges
+gr_groupcompteresult_112=Negative exchange differences
+gr_groupcompteresult_113=Charges nettes sur cessions de valeurs mobilières de placement
+gr_groupcompteresult_120=Total financial charges (VI)
+gr_groupcompteresult_130=Financial result (V-VI)
+gr_groupcompteresult_140=CURRENT RESULT before taxes (I-II+III-IV+V-VI)
+gr_groupcompteresult_150=Exceptional income on management transactions
+gr_groupcompteresult_151=Exceptional income on capital transactions
+gr_groupcompteresult_152=Reversals of provisions and depreciation and expense transfers
+gr_groupcompteresult_160=Total exceptional income (VII)
+gr_groupcompteresult_170=Exceptional charges on management operations
+gr_groupcompteresult_171=Exceptional charges on capital transactions
+gr_groupcompteresult_172=Allocations to amortization, depreciation and provisions
+gr_groupcompteresult_180=Total exceptional charges (VIII)
+gr_groupcompteresult_190=EXCEPTIONAL RESULT (VII-VIII)
+gr_groupcompteresult_200=Employee profit sharing (IX)
+gr_groupcompteresult_210=Income taxes (X)
+gr_groupcompteresult_220=Total products (I+III+V+VII)
+gr_groupcompteresult_230=Total charges (II+IV+VI+VIII+IX+X)
+gr_groupcompteresult_240=GAIN OR LOSS
+gr_groupsig_10=Sold production of goods
+gr_groupsig_12=Service production sold
+gr_groupsig_20=TOTAL PRODUCTION SOLD
+gr_groupsig_30=Sale of goods
+gr_groupsig_31=Export merchandise sales
+gr_groupsig_40=TOTAL GOODS SOLD
+gr_groupsig_60=TOTAL OPERATING INCOME
+gr_groupsig_90=Subcontracting purchases
+gr_groupsig_91=Transport (sales and purchases)
+gr_groupsig_100=TOTAL PURCHASES + SUBCONTRACTING
+gr_groupsig_110=Purchases of goods
+gr_groupsig_111=Changes in stock of goods
+gr_groupsig_120=TOTAL GOODS PURCHASES
+gr_groupsig_130=GROSS MARGIN ON PRODUCTION
+gr_groupsig_140=GROSS MARGIN ON GOODS
+gr_groupsig_150=TOTAL GROSS MARGIN
+gr_groupsig_160=Total gross margin rate
+gr_groupsig_164=Energetics
+gr_groupsig_165=Small equipment
+gr_groupsig_166=Other purchases and external expenses
+gr_groupsig_167=Miscellaneous subcontracting (excluding production)
+gr_groupsig_168=Real estate rentals and rental charges
+gr_groupsig_170=Vehicle rentals and maintenance
+gr_groupsig_172=Furniture leasing
+gr_groupsig_175=Computer maintenance & telecommunications
+gr_groupsig_176=Website
+gr_groupsig_177=Insurance
+gr_groupsig_178=Fees
+gr_groupsig_180=Displacements
+gr_groupsig_181=Bank service fees
+gr_groupsig_182=Factoring commissions
+gr_groupsig_190=TOTAL EXTERNAL EXPENSES
+gr_groupsig_200=ADDED VALUE
+gr_groupsig_210=Salaries and indirect charges
+gr_groupsig_220=TOTAL INDIRECT
+gr_groupsig_231=Direct interims
+gr_groupsig_240=TOTAL DIRECT
+gr_groupsig_250=Miscellaneous personnel income & expenses
+gr_groupsig_260=TOTAL PERSONNEL COSTS
+gr_groupsig_280=TOTAL OPERATING PERSONNEL COSTS
+gr_groupsig_290=Operating grants
+gr_groupsig_292=Dues and taxes
+gr_groupsig_300=GROSS OPERATING SURPLUS
+gr_groupsig_310=EBITDA
+gr_groupsig_320=Other exploitation products
+gr_groupsig_321=Intangible assets
+gr_groupsig_322=Fixed assets
+gr_groupsig_323=Allocations to exceptional provisions
+gr_groupsig_324=Other operating expenses
+gr_groupsig_330=OPERATING RESULT
+gr_groupsig_340=Interest on borrowings
+gr_groupsig_343=Financial products
+gr_groupsig_350=BOTTOM LINE
+gr_groupsig_360=CURRENT RESULT
+gr_groupsig_370=Extraordinary charges
+gr_groupsig_380=EXCEPTIONAL RESULT
+gr_groupsig_390=NET INCOME BEFORE TAX
+gr_groupsig_410=NET INCOME AFTER TAX
+gr_groupsig_420=EBIT
+gr_groupsig_430=SELF-FINANCING CAPACITY
