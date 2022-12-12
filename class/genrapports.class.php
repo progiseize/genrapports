@@ -525,10 +525,8 @@ class GenRapports {
 
 			if(!empty($groupinfos['cat_childs'])):
 				foreach($groupinfos['cat_childs'] as $catchild):
-
 					$sql_update = "UPDATE ".MAIN_DB_PREFIX.$this->table_accounting_account." SET fk_accounting_category = '".$groupkey."' WHERE entity = '".$conf->entity."' AND account_number LIKE '".$catchild."'";
 					array_push($tab,$sql_update);
-
 				endforeach;
 			endif;
 		endforeach;
