@@ -3,6 +3,9 @@
 [comment]: <> (TODO)
 
 ***
+### 1.5.7 (22/02/2023)
+* FIX - Corrections ordres des requêtes SQL et numéros de compte
+
 ### 1.5.6 (29/09/2022)
 * MAJ - Ajouts comptes 4383 4283
 
