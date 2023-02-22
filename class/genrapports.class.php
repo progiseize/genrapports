@@ -60,13 +60,16 @@ class GenRapports {
 		94 => array('formula' => '','cat_childs' => array('4091%')),
 		100 => array('formula' => '-1*(90+91+92+93+94)','cat_childs' => array()),
 		110 => array('formula' => '','cat_childs' => array('41188%','491%','413%','416%','417%','418%')),
-		111 => array('formula' => '','cat_childs' => array('40188%','4096%','495%','496%','4097%','4098%','425%','4287%','4387%','441%','443%','444%','4456%','4457%','44581%','44582%','44583%','44586%','4487%','451%',456,'4560%','458%','462%','465%',467,'4670%','4673%','4687%','478%','503%','44585%','4672%')), // %?
+		131 => array('formula' => '','cat_childs' => array('50%','59%','500%')), // %?
+		287 => array('formula' => '','cat_childs' => array('43%','430%','431%','437%','4382%','4383%','4386%')), // %?
+		283 => array('formula' => '','cat_childs' => array('165%','166%','1675%','168%','17%','426%','45%','450%','455%')), // %?
+		111 => array('formula' => '','cat_childs' => array('40188%','4096%','495%','496%','4097%','4098%','425%','4287%','4387%','441%','443%','444%','4456%','4457%','44581%','44582%','44583%','44586%','4487%','451%','456%','4560%','458%','462%','465%','467%','4670%','4673%','4687%','478%','503%','44585%','4672%')), // %?
 		112 => array('formula' => '','cat_childs' => array('4562%')),
 		120 => array('formula' => '-1*(110+111+112)','cat_childs' => array()),
 		130 => array('formula' => '','cat_childs' => array('5021%')),
-		131 => array('formula' => '','cat_childs' => array(50,'59%','500%')), // %?
+		
 		132 => array('formula' => '','cat_childs' => array('52%')),
-		133 => array('formula' => '','cat_childs' => array(51,'510%','53%','54%','512%','517%','518%')), // %?
+		133 => array('formula' => '','cat_childs' => array('51%','510%','53%','54%','512%','517%','518%')), // %?
 		134 => array('formula' => '','cat_childs' => array('486%')),
 		140 => array('formula' => '-1*(130+131+132+133+134)','cat_childs' => array()),
 		150 => array('formula' => '100+120+140','cat_childs' => array()),
@@ -90,26 +93,26 @@ class GenRapports {
 		240 => array('formula' => '','cat_childs' => array('1671%')),
 		241 => array('formula' => '','cat_childs' => array('1674%')),
 		250 => array('formula' => '240+241','cat_childs' => array()),
-		260 => array('formula' => '','cat_childs' => array('151%')),
 		261 => array('formula' => '','cat_childs' => array('15%')),
+		260 => array('formula' => '','cat_childs' => array('151%')),		
 		270 => array('formula' => '260+261','cat_childs' => array()),
 		280 => array('formula' => '','cat_childs' => array('161%','16881%')),
 		281 => array('formula' => '','cat_childs' => array('163%','16883%')),
-		282 => array('formula' => '','cat_childs' => array('164%','16884%','514%','5186%','519%',5124,'51240%')), // %?
-		283 => array('formula' => '','cat_childs' => array('165%','166%','1675%','168%','17%','426%',45,'450%','455%')), // %?
+		282 => array('formula' => '','cat_childs' => array('164%','16884%','514%','5186%','519%','5124%','51240%')), // %?
+		
 		284 => array('formula' => '','cat_childs' => array('4191%')),
 		285 => array('formula' => '','cat_childs' => array('40199%','403%','4081%','4088%')),
 		286 => array('formula' => '','cat_childs' => array('421%','422%','424%','427%','4282%','4283%','4284%','4286%')),
-		287 => array('formula' => '','cat_childs' => array(43,'430%','431%','437%','4382%','4383%','4386%')), // %?
 		288 => array('formula' => '','cat_childs' => array('4452%','4455%','44580%','44584%','44587%')),
 		289 => array('formula' => '','cat_childs' => array('442%','446%','447%','4482%','4486%')),
-		290 => array('formula' => '','cat_childs' => array('457%','269%','279%','404%','405%','4084%',4088,'41199%','4196%','4197%','4198%','464%','4686%','4671%','467AB%','509%','487%','477%')), // %?
+		290 => array('formula' => '','cat_childs' => array('457%','269%','279%','404%','405%','4084%','41199%','4196%','4197%','4198%','464%','4686%','4671%','467AB%','509%','487%','477%')), // %?
 		300 => array('formula' => '280+281+282+283+284+285+286+287+288+289+290','cat_childs' => array()),
 		320 => array('formula' => '220+250+270+300','cat_childs' => array()),
 	);
 
 	// GROUPES COMPTE DE RESULTAT
 	private $group_compteresult = array(
+		34 => array('formula' => '','cat_childs' => array('7%')),
 		10 => array('formula' => '','cat_childs' => array('707%','709%')),
 		11 => array('formula' => '','cat_childs' => array('701%','702%','703%')),
 		12 => array('formula' => '','cat_childs' => array('704%','705%','706%','708%')),
@@ -117,9 +120,9 @@ class GenRapports {
 		30 => array('formula' => '','cat_childs' => array('713%')),
 		31 => array('formula' => '','cat_childs' => array('720%','730%')),
 		32 => array('formula' => '','cat_childs' => array('740%')),
-		33 => array('formula' => '','cat_childs' => array('781%','791%')),
-		34 => array('formula' => '','cat_childs' => array('7%')),
+		33 => array('formula' => '','cat_childs' => array('781%','791%')),		
 		40 => array('formula' => '30+31+32+33+34+20','cat_childs' => array()),
+		60 => array('formula' => '','cat_childs' => array('6%')),
 		50 => array('formula' => '','cat_childs' => array('607%','6087%','6097%')),
 		51 => array('formula' => '','cat_childs' => array('6037%')),
 		52 => array('formula' => '','cat_childs' => array('601%','602%','6081%','6082%','6091%','6092%')),
@@ -129,8 +132,7 @@ class GenRapports {
 		56 => array('formula' => '','cat_childs' => array('641%','644%','648%')),
 		57 => array('formula' => '','cat_childs' => array('645%','646%','647%','648%')),
 		58 => array('formula' => '','cat_childs' => array('6811%','6812%')),
-		59 => array('formula' => '','cat_childs' => array('6815%','6816%','6817%')),
-		60 => array('formula' => '','cat_childs' => array('6%')),
+		59 => array('formula' => '','cat_childs' => array('6815%','6816%','6817%')),		
 		70 => array('formula' => '50+51+52+53+54+55+56+57+58+59+60','cat_childs' => array()),
 		80 => array('formula' => '40+70','cat_childs' => array()),
 		90 => array('formula' => '','cat_childs' => array('755%')),
@@ -170,10 +172,11 @@ class GenRapports {
 		10 => array('formula' => '','cat_childs' => array('701%')),
 		12 => array('formula' => '','cat_childs' => array('706%','7083%')),
 		20 => array('formula' => '10+12','cat_childs' => array()),
-		30 => array('formula' => '','cat_childs' => array(707,'7070%','7071%','70791%','7085%','7089%','70891%','709%','7097%')),
+		30 => array('formula' => '','cat_childs' => array('707%','7070%','7071%','70791%','7085%','7089%','70891%','709%','7097%')),
 		31 => array('formula' => '','cat_childs' => array('7079','70790%')),
 		40 => array('formula' => '30+31','cat_childs' => array()),
 		60 => array('formula' => '20+40','cat_childs' => array()),
+		167 => array('formula' => '','cat_childs' => array('604%','6040%')),
 		90 => array('formula' => '','cat_childs' => array('611%','6041%')),
 		91 => array('formula' => '','cat_childs' => array('6241%','6242%','6244%')),
 		100 => array('formula' => '90+91','cat_childs' => array()),
@@ -184,14 +187,15 @@ class GenRapports {
 		140 => array('formula' => '40+120+90+91','cat_childs' => array()),
 		150 => array('formula' => '130+140','cat_childs' => array()),
 		160 => array('formula' => '150/60','cat_childs' => array()),
+		166 => array('formula' => '','cat_childs' => array('606%','6060%','6064%','6181%','623%','6230%','6234%','6236%','6238%','651%')),
 		164 => array('formula' => '','cat_childs' => array('60611%','60612%')),
 		165 => array('formula' => '','cat_childs' => array('6063%')),
-		166 => array('formula' => '','cat_childs' => array(606,'6060%','6064%','6181%',623,'6230%','6234%','6236%','6238%','651%')),
-		167 => array('formula' => '','cat_childs' => array(604,'6040%')),
+		175 => array('formula' => '','cat_childs' => array('613%','6130%','6131%','61352%','6156%','6261%','6262%','626%')),
+		172 => array('formula' => '','cat_childs' => array('615%','6150%','6155%','61550%')),
 		168 => array('formula' => '','cat_childs' => array('6132%','6152%')),
 		170 => array('formula' => '','cat_childs' => array('61361%','61362%','61368%','61552%')),
-		172 => array('formula' => '','cat_childs' => array(615,'6150%',6155,'61550%')),
-		175 => array('formula' => '','cat_childs' => array(613,'6130%','6131%','61352%','6156%','6261%','6262%','626%')),
+		
+		
 		176 => array('formula' => '','cat_childs' => array('6231%')),
 		177 => array('formula' => '','cat_childs' => array('616%')),
 		178 => array('formula' => '','cat_childs' => array('6226%','6227%','6281%')),
@@ -502,14 +506,18 @@ class GenRapports {
 
 		global $conf, $langs;
 
-		$tab = array();
+		$tab = array(
+			'start' => array(),
+			'insert' => array(),
+			'update' => array(),
+		);
 
 		// ON REINITIALISE LES GROUPES PERSONNALISES
 		$sql_raz_accounting_category = "DELETE FROM ".MAIN_DB_PREFIX.$this->table_c_accounting_category." WHERE entity = '".$conf->entity."'";
-		array_push($tab,$sql_raz_accounting_category);
+		array_push($tab['start'],$sql_raz_accounting_category);
 
 		$sql_raz_accounting_childs ="UPDATE ".MAIN_DB_PREFIX.$this->table_accounting_account." SET fk_accounting_category = '0' WHERE entity = '".$conf->entity."'";
-		array_push($tab,$sql_raz_accounting_childs);
+		array_push($tab['start'],$sql_raz_accounting_childs);
 
 		switch ($mode):
 			case 'bilan': $groups = $this->group_bilan; break;
@@ -519,14 +527,16 @@ class GenRapports {
 
 		foreach($groups as $groupkey => $groupinfos):
 
+			$bin = empty($groupinfos['formula'])?0:1;
+
 			$sql_insert = "INSERT INTO ".MAIN_DB_PREFIX.$this->table_c_accounting_category." (rowid, entity, code, label, range_account, sens, category_type, formula, position, fk_country, active) VALUES ";
-			$sql_insert.= "('".$groupkey."', '".$conf->entity."', '".$groupkey."', '".$this->db->escape($this->group_prefix.$langs->trans('gr_group'.$mode.'_'.$groupkey))."', '', 0, 0, '".$groupinfos['formula']."', '".$groupkey."', 1, 1)";
-			array_push($tab,$sql_insert);
+			$sql_insert.= "('".$groupkey."', '".$conf->entity."', '".$groupkey."', '".$this->db->escape($this->group_prefix.$langs->trans('gr_group'.$mode.'_'.$groupkey))."', '', 0, ".$bin.", '".$groupinfos['formula']."', '".$groupkey."', 1, 1)";
+			array_push($tab['insert'],$sql_insert);
 
 			if(!empty($groupinfos['cat_childs'])):
 				foreach($groupinfos['cat_childs'] as $catchild):
 					$sql_update = "UPDATE ".MAIN_DB_PREFIX.$this->table_accounting_account." SET fk_accounting_category = '".$groupkey."' WHERE entity = '".$conf->entity."' AND account_number LIKE '".$catchild."'";
-					array_push($tab,$sql_update);
+					array_push($tab['update'],$sql_update);
 				endforeach;
 			endif;
 		endforeach;
@@ -550,20 +560,29 @@ class GenRapports {
 	    endswitch;
 
 	    // Nombre de requêtes à executer
-	    $nb_sql = count($tab);
+	    $nb_sql = count($tab['start']) + count($tab['insert']) + count($tab['update']);
 
 	    // On instancie les variables de succès et d'erreurs
 	    $success_sql = 0;
 	    $errors_sql = array();
 	    $i = 0;
 
-	    // Pour chaque ligne du tableau
-	    foreach ($tab as $request): $i++;
-	        // On effectue la requête
+	    // START
+	    foreach ($tab['start'] as $request): $i++;
 	        $result = $this->db->query($request);
-	        if($result): $success_sql++; 
-	        else: array_push($errors_sql, $i);
-	        endif;
+	        if($result): $success_sql++; else: array_push($errors_sql, $i);endif;
+	    endforeach;
+
+	    // INSERT
+	    foreach ($tab['insert'] as $request): $i++;
+	        $result = $this->db->query($request);
+	        if($result): $success_sql++; else: array_push($errors_sql, $i); endif;
+	    endforeach;
+
+	    // UPDATE
+	    foreach ($tab['update'] as $request): $i++;
+	        $result = $this->db->query($request);
+	        if($result): $success_sql++; else: array_push($errors_sql, $i); endif;
 	    endforeach;
 
 	    if($success_sql == $nb_sql): return true;
