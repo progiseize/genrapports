@@ -134,7 +134,7 @@ if(!empty($action)):
 					if($genrapports->exec_tabsql('compteresult')):
 
 						// CALCUL
-						//$borp = $genrapports->tableau_resultat($date_start,$date_end,'no','calcul');
+						$borp = $genrapports->tableau_resultat($date_start,$date_end,'no','calcul');
 						//var_dump($borp);
 						
 						// On execute les requetes pour le bilan

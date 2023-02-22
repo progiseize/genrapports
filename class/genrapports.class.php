@@ -568,22 +568,28 @@ class GenRapports {
 	    $i = 0;
 
 	    // START
-	    foreach ($tab['start'] as $request): $i++;
-	        $result = $this->db->query($request);
-	        if($result): $success_sql++; else: array_push($errors_sql, $i);endif;
-	    endforeach;
+	    if(!empty($tab['start'])):
+		    foreach ($tab['start'] as $request): $i++;
+		        $result = $this->db->query($request);
+		        if($result): $success_sql++; else: array_push($errors_sql, $i);endif;
+		    endforeach;
+		endif;
 
 	    // INSERT
-	    foreach ($tab['insert'] as $request): $i++;
-	        $result = $this->db->query($request);
-	        if($result): $success_sql++; else: array_push($errors_sql, $i); endif;
-	    endforeach;
+	    if(!empty($tab['insert'])):
+		    foreach ($tab['insert'] as $request): $i++;
+		        $result = $this->db->query($request);
+		        if($result): $success_sql++; else: array_push($errors_sql, $i); endif;
+		    endforeach;
+		endif;
 
 	    // UPDATE
-	    foreach ($tab['update'] as $request): $i++;
-	        $result = $this->db->query($request);
-	        if($result): $success_sql++; else: array_push($errors_sql, $i); endif;
-	    endforeach;
+	    if(!empty($tab['update'])):
+	    	foreach ($tab['update'] as $request): $i++;
+		        $result = $this->db->query($request);
+		        if($result): $success_sql++; else: array_push($errors_sql, $i); endif;
+		    endforeach;
+		endif;
 
 	    if($success_sql == $nb_sql): return true;
 	    else:
@@ -1086,7 +1092,7 @@ class GenRapports {
 	        $line_borp->debit = 0;
 	        $line_borp->credit = $sommes[240]['N'];
 	        $line_borp->montant = $sommes[240]['N'];
-	        $line_borp->numero_compte = formattedNbNumber('120'); // NBCOUNTER
+	        $line_borp->numero_compte = $this->formattedNbNumber('120'); // NBCOUNTER
 	        $line_borp->subledger_label = $langs->trans('gr_borp').' '.$year_actpas[0];
 	        $line_borp->label_operation = $langs->trans('gr_borp').' '.$year_actpas[0];
 	        $line_borp->fk_user_author = $user->id;
