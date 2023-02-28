@@ -3,6 +3,9 @@
 [comment]: <> (TODO)
 
 ***
+### 1.5.8 (28/02/2023)
+* MAJ - Suppression du compte 5124% du groupe 282 (emprunts). Il sera intégré avec 512% dans le groupe 133 "disponibilités"
+
 ### 1.5.7 (22/02/2023)
 * FIX - Corrections ordres des requêtes SQL et numéros de compte
 

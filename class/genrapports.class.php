@@ -98,7 +98,7 @@ class GenRapports {
 		270 => array('formula' => '260+261','cat_childs' => array()),
 		280 => array('formula' => '','cat_childs' => array('161%','16881%')),
 		281 => array('formula' => '','cat_childs' => array('163%','16883%')),
-		282 => array('formula' => '','cat_childs' => array('164%','16884%','514%','5186%','519%','5124%','51240%')), // %?
+		282 => array('formula' => '','cat_childs' => array('164%','16884%','514%','5186%','519%')), // %?
 		
 		284 => array('formula' => '','cat_childs' => array('4191%')),
 		285 => array('formula' => '','cat_childs' => array('40199%','403%','4081%','4088%')),
