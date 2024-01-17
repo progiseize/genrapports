@@ -31,13 +31,13 @@ function genrap_AdminPrepareHead(){
 
     if($user->rights->genrapports->configurer):
         $head[$h][0] = dol_buildpath("/genrapports/admin/setup.php", 1);
-        $head[$h][1] = $langs->trans($langs->trans('gr_configuration'));
+        $head[$h][1] = '<i class="fas fa-cog paddingright"></i> '.$langs->trans($langs->trans('gr_configuration'));
         $head[$h][2] = 'setup';
         $h++;
     endif;
     if($user->rights->genrapports->executer):
         $head[$h][0] = dol_buildpath("/genrapports/index.php", 1);
-        $head[$h][1] = $langs->trans($langs->trans('gr_reports'));
+        $head[$h][1] = '<i class="fas fa-list paddingright"></i> '.$langs->trans($langs->trans('gr_reports'));
         $head[$h][2] = 'index';
         $h++;
     endif;

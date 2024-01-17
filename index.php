@@ -26,7 +26,7 @@ if (! $res && file_exists("../main.inc.php")): $res=@include '../main.inc.php'; 
 if (! $res && file_exists("../../main.inc.php")): $res=@include '../../main.inc.php'; endif;
 
 // Protection if external user
-if ($user->societe_id > 0): accessforbidden(); endif;
+if ($user->socid > 0): accessforbidden(); endif;
 
 $version = explode('.', DOL_VERSION); // ON RECUPERE LA VERSION DE DOLIBARR
 
@@ -37,7 +37,8 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 
 require_once DOL_DOCUMENT_ROOT.'/accountancy/class/bookkeeping.class.php';
 // SURCHARGE PROGISEIZE 
-if(intval($version[0]) == 16): require_once 'class/bookkeepingmod_v16.class.php'; // 16 
+if(intval($version[0]) >= 17): require_once 'class/bookkeepingmod_v18.class.php'; // 17+
+elseif(intval($version[0]) == 16): require_once 'class/bookkeepingmod_v16.class.php'; // 16
 elseif(intval($version[0]) == 15): require_once 'class/bookkeepingmod_v15.class.php'; // 15 
 elseif(intval($version[0]) == 14): require_once 'class/bookkeepingmod_v14.class.php'; // 14 
 elseif(intval($version[0]) == 13): require_once 'class/bookkeepingmod_v13.class.php'; // 13
@@ -51,7 +52,12 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/accounting.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/report.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formaccounting.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/modules/export/export_csv.modules.php';
+
+if(intval($version[0]) >= 18):
+	require_once DOL_DOCUMENT_ROOT.'/core/modules/export/export_csvutf8.modules.php';
+else:
+	require_once DOL_DOCUMENT_ROOT.'/core/modules/export/export_csv.modules.php';
+endif;
 
 dol_include_once('./genrapports/lib/genrapports.lib.php');
 dol_include_once('./genrapports/class/genrapports.class.php');
@@ -97,6 +103,8 @@ $entity = $conf->entity;
 $acts = array('bilan','compte_resultat','sig','resultat','sauvegarde','anouveaux');
 $sim_actions = array('bilan','compte_resultat','sig');
 
+$form = new Form($db);
+
 /*******************************************************************
 * ACTIONS
 ********************************************************************/
@@ -135,7 +143,6 @@ if(!empty($action)):
 
 						// CALCUL
 						$borp = $genrapports->tableau_resultat($date_start,$date_end,'no','calcul');
-						//var_dump($borp);
 						
 						// On execute les requetes pour le bilan
 						if($genrapports->exec_tabsql('bilan')):
@@ -187,52 +194,62 @@ endif;
 /***************************************************
 * VIEW
 ****************************************************/
-llxHeader('',$langs->trans('Module300306Name'),'','','','',array('/genrapports/js/genrapports.js'),array('/genrapports/css/genrapports.css')); ?>
+$array_js = array();
+$array_css = array('/genrapports/css/genrapports.css');
+
+llxHeader('',$langs->trans('Module300306Name'),'','','','',$array_js,$array_css); ?>
 
 <!-- CONTENEUR GENERAL -->
 <div id="pgsz-option" class="genrapports">
 
 	<h1><?php echo $langs->trans('gr_index_title'); ?></h1>
-	<?php $head = genrap_AdminPrepareHead(); dol_fiche_head($head, 'index','GenRapports', 0,'progiseize@progiseize'); ?>
+	<?php $head = genrap_AdminPrepareHead(); dol_fiche_head($head, 'index'); ?>
 
 	<?php if($user->rights->genrapports->executer): ?>
+
+		<h2><i class="fas fa-filter paddingright"></i> <?php echo $langs->trans('gr_index_export_title'); ?></h2>
 
 		<?php // FORMULAIRE DE PARAMETRAGE DE RAPPORT ?>
 		<form enctype="multipart/form-data" action="<?php print $_SERVER["PHP_SELF"]; ?>" method="post" class="gen-form-wrapper">
 			<input type="hidden" name="token" value="<?php echo newtoken(); ?>">
-			<table class="noborder centpercent pgsz-option-table" style="border-top:none;" id="genrapports-params">
-		        <tbody>
-		            <tr class="titre">
-		                <td class="nobordernopadding valignmiddle col-title" style="" colspan="6">
-		                    <div class="titre inline-block" style="padding:16px 0"><?php echo $langs->trans('gr_index_export_title'); ?></div>
-		                </td>
-		            </tr>
+			<table class="genfilters" id="genrapports-params">
+		        
+		        <thead>
 		            <?php // TITRES COLONNES TABLEAU // $form->textwithpicto(texte_a_afficher,'infobulle'); ?>
-		            <tr class="liste_titre pgsz-optiontable-coltitle">
+		            <tr class="">
 		                <th><?php echo $langs->trans('gr_index_export_type'); ?></th>
 		                <th><?php echo $langs->trans('gr_index_export_datestart'); ?></th>
 		                <th><?php echo $langs->trans('gr_index_export_dateend'); ?></th>
 		                <th><?php echo $langs->trans('gr_index_export_showdetail'); ?></th>
 		                <th width="120" class="center"></th>
 		            </tr>
-		            <tr class="oddeven pgsz-optiontable-tr">
+		        </thead>
+		        <tbody>
+		            <tr class="">
 		                <td>
-		                	<select id="select-select-action" class="genrap-slct centpercent" name="action">
-								<option value="bilan" <?php if($action == '' || $action == 'bilan'): echo 'selected=""'; endif; ?>><?php echo $langs->trans('gr_export_type_bilan'); ?></option>
-								<option value="compte_resultat" <?php if($action == 'compte_resultat'): echo 'selected=""'; endif; ?>><?php echo $langs->trans('gr_export_type_compteres'); ?></option>
-								<option value="sig" <?php if($action == 'sig'): echo 'selected=""'; endif; ?>><?php echo $langs->trans('gr_export_type_sig'); ?></option>
-							</select>
+		                	<?php
+		                		$select_actions = array(
+		                			'bilan' => $langs->trans('gr_export_type_bilan'),
+		                			'compte_resultat' => $langs->trans('gr_export_type_compteres'),
+		                			'sig' => $langs->trans('gr_export_type_sig'),
+		                		);
+		                		echo $form->selectarray('action',$select_actions,$action,0,0,0,'',0,0,0,'','centpercent');
+		                	?>
+		                	
 		        		</td>
 		                <td><input type="date" name="gen-datestart" value="<?php echo $date_start; ?>"></td>
 		                <td><input type="date" name="gen-dateend" value="<?php echo $date_end; ?>"></td>
 		                <td>
-		                	<select id="showaccountdetail" class="flat pdx" name="showaccountdetail">
-								<option value="no" <?php if($showaccountdetail == '' || $showaccountdetail == 'no'): echo 'selected=""'; endif; ?>><?php echo $langs->trans('No'); ?></option>
-								<option value="yes" <?php if($showaccountdetail == 'yes'): echo 'selected=""'; endif; ?>><?php echo $langs->trans('AccountWithNonZeroValues'); ?></option>
-								<option value="all" <?php if($showaccountdetail == 'all'): echo 'selected=""'; endif; ?>><?php echo $langs->trans('All'); ?></option>
-							</select>
+		                	<?php
+		                		$shod = array(
+		                			'no' => $langs->trans('No'),
+		                			'yes' => $langs->trans('AccountWithNonZeroValues'),
+		                			'all' => $langs->trans('All'),
+		                		);
+		                		echo $form->selectarray('showaccountdetail',$shod,$showaccountdetail);
+		                	?>
 		                </td>
-		                <td><input type="submit" class="button pgsz-button-submit" value="<?php echo $langs->trans('gr_button_generate'); ?>" ></td>
+		                <td class="right"><input type="submit" class="genbtn" value="<?php echo $langs->trans('gr_button_generate'); ?>" ></td>
 		            </tr>
 		        </tbody>
 		    </table>
@@ -242,25 +259,35 @@ llxHeader('',$langs->trans('Module300306Name'),'','','','',array('/genrapports/j
 
 	    <?php if (in_array($action, $sim_actions) && !$error): 
 
-	    	$rapport = $genrapports->tableau_resultat($date_start,$date_end,$showaccountdetail,'affichage',$action,$array_of_files); ?>
+	    	$rapport = $genrapports->tableau_resultat($date_start,$date_end,$showaccountdetail,'affichage',$action,$array_of_files);
+	    	?>
 
-	    	<table class="noborder centpercent pgsz-option-table" style="border-top:none;" id="genrapports-tabresults">
+	    	<div class="genflex">
+		    	<h2>
+		    		<i class="fas fa-list paddingright"></i> 
+		    		<?php echo $langs->trans('gr_export_type_'.$action); ?>
+		    		<span class="gendate"><?php echo $langs->transnoentities('gr_index_rapport_generatetime',date('d/m/Y',$rapport['generate_time']),date('H:i',$rapport['generate_time'])); ?></span>
+		    	</h2>
+
+		    	<?php if(!empty($rapport['files'])): ?>
+		    	<div class="genfiles">
+		    		<?php $i = 0; 
+			    	foreach($rapport['files'] as $label => $url_file): $i++; ?>
+		        		<?php if($i == 1): $label = $langs->trans('gr_button_downloadfile_'.$label); endif; ?>
+		        		<a class="genbtn" href="<?php echo $url_file; ?>"><?php echo $label; ?></a>
+		        	<?php endforeach; ?>	    		
+		    	</div>
+		    	<?php endif; ?>
+	    	</div>
+
+	    	
+
+	    	<table class="gentab" style="border-top:none;" id="genrapports-tabresults">
+		        <thead style="position:sticky;top: 52px;">
+		        	<?php echo $rapport['tab_head']; ?>
+		        </thead>
 		        <tbody>
-		            <tr class="titre">
-		                <td class="nobordernopadding valignmiddle col-title" style="" colspan="2">
-		                    <div class="titre inline-block" style="padding:16px 0"><?php echo $langs->trans('gr_index_rapport_title'); ?> 
-		                    <span class="gendate"><?php echo $langs->transnoentities('gr_index_rapport_generatetime',date('d/m/Y',$rapport['generate_time']),date('H:i',$rapport['generate_time'])); ?></span>
-		                </div>
-		                </td>
-		                <td class="nobordernopadding valignmiddle right" colspan="13">
-		                	<?php $i = 0; foreach($rapport['files'] as $label => $url_file): $i++; ?>
-		                		<?php if($i == 1): $label = $langs->trans('gr_button_downloadfile_'.$label); endif; ?>
-		                		<a class="button pgsz-button-small" href="<?php echo $url_file; ?>"><?php echo $label; ?></a>
-		                	<?php endforeach; ?>
-		                </td>
-		            </tr>
-		            <?php echo $rapport['tab_head']; ?>
-		            <?php echo $rapport['tab_lines']; ?>
+		        	<?php echo $rapport['tab_lines']; ?>
 		        </tbody>
 		    </table>
 
@@ -272,7 +299,34 @@ llxHeader('',$langs->trans('Module300306Name'),'','','','',array('/genrapports/j
 
 </div>
 
+<script>
 
+	var element = document.querySelector('.gentab thead');
+	var offsets = element.getBoundingClientRect();
+	var is_sticky = offsets.top - 52;
+
+	addEventListener("scroll", (event) => {
+	    if(window.scrollY >= is_sticky){ element.classList.add("sticky");}
+	    else {element.classList.remove("sticky");}                                            
+	});
+	
+	$(document).ready(function(){
+
+		// DEPTH LIST
+		$('.gentab').on('click','.tab-toggle',function(e){
+			var target = $(this).data('target');
+			$(this).toggleClass('tropen');
+			if($(this).hasClass('tropen')){
+				$('.'+target).show();
+				$(this).find('.icon-toggle').removeClass('fa-caret-right').addClass('fa-caret-down');
+			} else {
+				$('.'+target).hide();
+				$(this).find('.icon-toggle').removeClass('fa-caret-down').addClass('fa-caret-right');
+			}
+		});
+	});
+
+</script>
 
 
 <?php

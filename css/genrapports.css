@@ -15,14 +15,60 @@
  * You should have received a copy of the GNU AGPL
  * along with this program.  If not, see <https://www.gnu.org/licenses/agpl-3.0.html>.
  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
-#genrapports-tabresults td .warning {color: #b2b9c1 !important;}
-#genrapports-tabresults tr.pgsz-optiontable-tr:hover td {background: #f6f6f6;}
-#genrapports-tabresults tr.pgsz-optiontable-tr.liste_total td {background: #f6f6f6;font-weight: 600;}
-#genrapports-params .select2-selection__rendered {text-align: left;font-family: 'Poppins', sans-serif;color: #051641;}
-#genrapports-params input[type=date] {width: 80%;box-sizing: border-box;font-family: 'Poppins', sans-serif;color: #051641;}
+.genrapports {font-family: "Roboto", sans-serif;}
 
-.genrapports .liste_titre th {background: #f6f6f6;}
-.genrapports h1 {font-size: 18px;margin-bottom: 12px;}
+.genrapports h1 {font-size: 18px;margin-bottom: 12px;font-weight: 600;color:#263c5c;margin-bottom: 24px;}
 
-.genrapports .titre span.gendate {font-size: 12px;font-weight: 400;color: #999;margin-left: 6px;}
+.genrapports .tabs a.tab {font-family: "Roboto", sans-serif;font-weight: 500}
+.genrapports .tabs a.tab i {color:#ccc; }
+
+.genrapports h2 {font-family: "Roboto", sans-serif;font-size: 1.2em;font-weight: 600;margin: 0;padding: 16px 0;color:#263c5c;}
+.genrapports h2 i {color:#6c6aa8;font-size: 0.8em;}
+.genrapports h2 span.gendate {font-size: 12px;font-weight: 400;color: #999;margin-left: 6px;}
+
+.genflex {display: flex;align-items: center;justify-content: space-between;}
+.genflex h2 {flex: 1;}
+
+.genbtn {font-family: "Roboto", sans-serif;padding: 8px 12px;background: #fff; border: 1px solid var(--colorprimary);box-sizing: border-box;border-radius: 4px;color: var(--colorprimary);text-decoration: none;text-transform: uppercase;font-weight: 500;font-size: 0.9em;cursor: pointer;line-height: normal !important;text-decoration: none !important;color: #fff !important;background: #6c6aa8;}
+.genbtn:hover {background: #57558a;}
+
+.genfilters {border: 1px dashed #ccc;width: 100%;border-collapse: collapse;font-size: 0.95em;font-family: "Roboto", sans-serif;margin-bottom: 48px;}
+.genfilters thead tr {font-weight: 500;}
+.genfilters thead tr th {padding: 16px 16px 4px 16px;color: #263c5c;background: #fff;text-align: left}
+.genfilters thead tr th.right {text-align: right}
+.genfilters tbody tr td {padding: 4px 16px 16px 16px;}
+
+
+.genfilters .select2-container--default .select2-selection--single {font-family: 'Roboto', sans-serif; font-weight: 500;color: #696969 !important;}
+.genfilters .select2-container--focus span.select2-selection.select2-selection--single {font-family: 'Roboto', sans-serif; font-weight: 500;color: #696969 !important;}
+.genfilters .select2-selection__rendered {text-align: left;font-weight: 500;color: #696969 !important;}
+.genfilters input[type=date] {width: 80%;box-sizing: border-box;font-family: 'Roboto', sans-serif;color: #696969;font-weight: 500;}
+
+
+.gentab {border: none;width: 100%;border-collapse: collapse;font-size: 0.95em;font-family: "Roboto", sans-serif;}
+.gentab.bt {border-bottom: 1px dashed #ccc;}
+.gentab thead {position: relative;z-index: 999;}
+.gentab thead tr {font-weight: 500;}
+.gentab thead tr th {padding: 16px;border:1px dashed #ccc;border-bottom: 1px dashed #ccc; color: #263c5c;background: #fff;}
+.gentab thead.sticky tr:last-child th:after {display: block;content: '';background: #ccc;height: 1px;position: absolute;bottom: 0;left: 0;right:0;}
+
+.gentab tbody {}
+.gentab tbody tr {cursor: pointer;}
+.gentab tbody tr td {border-left:1px dashed #ccc;border-right:1px dashed #ccc;color: #696969;padding:8px 16px 8px 16px;font-weight: 600;}
+.gentab tbody tr.tab-depth-1 td {font-weight: 500;}
+.gentab tbody tr.tab-depth-1.tropen td {background: #f5f5f5;}
+.gentab tbody tr.tab-depth-1.tropen td:first-child {border-left:1px solid #b0bb39;}
+.gentab tbody tr.tab-depth-1.tropen td:first-child i.fa-folder {color: #b0bb39 !important;}
+.gentab tbody tr.tab-depth-1 td:first-child i.classB {color: #d2d2d2 !important;}
+
+.gentab tbody tr.tab-depth-2 {display: none;}
+.gentab tbody tr.tab-depth-2 td {padding:4px 16px;font-weight: 400;}
+.gentab tbody tr.tab-depth-2 td:first-child {padding-left: 42px;}
+
+.gentab tbody tr:hover td {background: #f5f5f5;}
+.gentab tbody tr.gensubtotal td {background: #f5f5f5;font-weight: 700;border-top:1px dashed #ccc;border-bottom:1px dashed #ccc;}
+
+.gentab tbody.tbody-separator tr td {height:12px;border-left:1px dashed #ccc;border-right:1px dashed #ccc;cursor: default;padding: 0;}
+

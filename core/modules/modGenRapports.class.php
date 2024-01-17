@@ -53,7 +53,7 @@ class modGenRapports extends DolibarrModules
         // It is used to group modules by family in module setup page
         $this->family = "Progiseize";
         // Module position in the family
-        $this->module_position = 130;
+        $this->module_position = '04';
         // Gives the possibility to the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
         //$this->familyinfo = array('myownfamily' => array('position' => '001', 'label' => $langs->trans("MyOwnFamily")));
 
@@ -67,14 +67,17 @@ class modGenRapports extends DolibarrModules
         $this->editor_url = 'https://progiseize.fr';
         
         // Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
-        $this->version = '1.5.8';
-        $this->url_last_version = "https://progiseize.fr/modules_info/".get_class($this)."_lastversion.txt";
+        $this->version = '1.6.1';
+        $this->url_last_version = "https://progiseize.fr/modules_info/lastversion.php?module=".$this->numero;
         // Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
         $this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
         // Name of image file used for this module.
         // If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
         // If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
-        $this->picto='accounting';
+        $version = explode('.',DOL_VERSION);
+        if($version[0] > 16): $this->picto='fa-search-dollar_fas_#263c5c';
+        else: $this->picto='accounting';
+        endif;
 
         // Defined all module parts (triggers, login, substitutions, menus, css, etc...)
         // for default path (eg: /mymodule/core/xxxxx) (0=disable, 1=enable)
@@ -95,7 +98,21 @@ class modGenRapports extends DolibarrModules
         //                          'dir' => array('output' => 'othermodulename'),      // To force the default directories names
         //                          'workflow' => array('WORKFLOW_MODULE1_YOURACTIONTYPE_MODULE2'=>array('enabled'=>'! empty($conf->module1->enabled) && ! empty($conf->module2->enabled)', 'picto'=>'yourpicto@mymodule')) // Set here all workflow context managed by module
         //                        );
-        $this->module_parts = array();
+        $this->module_parts = array(
+            'triggers' => 0,
+            'login' => 0,
+            'substitutions' => 0,
+            'menus' => 0,
+            'theme' => 0,
+            'tpl' => 0,
+            'barcode' => 0, 
+            'models' => 0,
+            'css' => array(),
+            'js' => array(),
+            'hooks' => array(),
+            'dir' => array(),
+            'workflow' => array(),
+        );
 
         // Data directories to create when module is enabled.
         // Example: this->dirs = array("/mymodule/temp");
@@ -106,7 +123,7 @@ class modGenRapports extends DolibarrModules
 
         // Dependencies
         $this->hidden = false;          // A condition to hide module
-        $this->depends = array('modAccounting','modProgiseize');       // List of module class names as string that must be enabled if this module is enabled
+        $this->depends = array('modAccounting');       // List of module class names as string that must be enabled if this module is enabled
         $this->requiredby = array();    // List of module ids to disable if this one is disabled
         $this->conflictwith = array();  // List of module class names as string this module is in conflict with
         $this->phpmin = array(5,0);                 // Minimum version of PHP required by module
@@ -233,7 +250,10 @@ class modGenRapports extends DolibarrModules
             'titre'=> $this->name,
             'mainmenu'=>'progiseize',
             'leftmenu'=> $this->rights_class,
-            'url'=>'/genrapports/index.php', 'langs'=>'progiseize@progiseize', 'position'=> $this->module_position, 'enabled'=>'1', 'perms'=>'1','target'=>'', 'user'=>2);
+            'url'=>'/genrapports/index.php', 'langs'=>'progiseize@progiseize', 'position'=> $this->module_position,
+            'enabled'=>'1', 'perms'=>'1','target'=>'', 'user'=>2,
+            'prefix' => '<span class="fas fa-search-dollar" style="color: #6c6aa8;margin-right:3px;"></span> '
+        );
         $r++;
 
         /*--------------- */

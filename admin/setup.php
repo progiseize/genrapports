@@ -58,9 +58,10 @@ endif;
 /***************************************************
 * VIEW
 ****************************************************/
+$array_js = array();
+$array_css = array('/genrapports/css/genrapports.css');
 
-llxHeader('',$langs->trans('gr_setup_title').' :: '.$langs->trans('Module300306Name'),'','','','',array('/genrapports/js/genrapports.js'),array('/genrapports/css/genrapports.css')); ?>
-
+llxHeader('',$langs->trans('gr_setup_title').' :: '.$langs->trans('Module300306Name'),'','','','',$array_js,$array_css); ?>
 
 <div id="pgsz-option" class="genrapports">
 
@@ -68,34 +69,28 @@ llxHeader('',$langs->trans('gr_setup_title').' :: '.$langs->trans('Module300306N
     <?php $head = genrap_AdminPrepareHead(); dol_fiche_head($head, 'setup','GenRapports', 0,'progiseize@progiseize'); ?>
 
     <?php if ($user->rights->genrapports->configurer): ?>
+
+    <h2><?php echo $langs->trans('gr_setup_title'); ?></h2>
     <form enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" id="">
 
         <input type="hidden" name="action" value="set_options">
 
-        <table class="noborder centpercent pgsz-option-table" style="border-top:none;">
-            <tbody>
-
-                <?php // ?>
-                <tr class="titre">
-                    <td class="nobordernopadding valignmiddle col-title" style="" colspan="3">
-                        <div class="titre inline-block" style="padding:16px 0"><?php echo $langs->trans('gr_setup_title'); ?></div>
-                    </td>
-                </tr>
-                <tr class="liste_titre pgsz-optiontable-coltitle" >
-                    <th><?php echo $langs->trans('Parameter'); ?></th>
-                    <th><?php echo $langs->trans('Description'); ?></th>
+        <table class="gentab bt">
+            <thead>
+                <tr class="" >
+                    <th class="left"><?php echo $langs->trans('Parameter'); ?></th>
                     <th class="right"><?php echo $langs->trans('Value'); ?></th>
                 </tr>
-
-                 <tr class="oddeven pgsz-optiontable-tr">
-                    <td class="bold pgsz-optiontable-fieldname"><?php echo $langs->trans('gr_setup_howmany_numbers'); ?></td>               
-                    <td class="pgsz-optiontable-fielddesc"></td>
+            </thead>
+            <tbody>  
+                <tr class="">
+                    <td class="left bold pgsz-optiontable-fieldname"><?php echo $langs->trans('gr_setup_howmany_numbers'); ?></td>               
                     <td class="right pgsz-optiontable-field "><input type="number" name="genrapports-numbers-to-use" value="<?php echo (GETPOST('genrapports-numbers-to-use'))?GETPOST('genrapports-numbers-to-use'):$conf->global->GENRAPPORTS_NUMBERS_TO_USE;?>"></td>
                 </tr>
             </tbody>
         </table>
         <div class="right pgsz-buttons" style="padding:16px 0;">
-            <input type="submit" class="button pgsz-button-submit" name="" value="<?php echo $langs->trans('Save'); ?>">
+            <input type="submit" class="genbtn" name="" value="<?php echo $langs->trans('Save'); ?>">
         </div>
     </form>
     <?php endif; ?>

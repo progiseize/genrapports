@@ -60,7 +60,7 @@ class AccountancyCategoryMod extends AccountancyCategory// extends CommonObject
 				}
 				$listofaccount .= "'".$cptcursor."'";
 			endforeach;
-			$sql .= " AND t.numero_compte IN (".$listofaccount.")"; // MODIFICATION PROGISEIZE
+			$sql .= " AND t.numero_compte IN (".$this->db->sanitize($listofaccount).")"; 
 
 		else: $sql .= " AND t.numero_compte = '".$this->db->escape($cpt)."'";
 		endif;
@@ -69,6 +69,8 @@ class AccountancyCategoryMod extends AccountancyCategory// extends CommonObject
 		if (!empty($month) && !empty($year)): $sql .= " AND (t.doc_date BETWEEN '".$this->db->idate(dol_get_first_day($year, $month))."' AND '".$this->db->idate(dol_get_last_day($year, $month))."')"; endif;
 		if ($thirdparty_code != 'nofilter'): $sql .= " AND t.thirdparty_code = '".$this->db->escape($thirdparty_code)."'"; endif;
 		if (is_array($cpt)): $sql .= " GROUP BY t.numero_compte"; endif;
+
+		//echo($sql.'<br>');
 
 		$resql = $this->db->query($sql);
 		if ($resql) {

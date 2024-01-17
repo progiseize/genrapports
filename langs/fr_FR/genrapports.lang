@@ -3,6 +3,7 @@ gr_setup_title=Options générales
 gr_setup_howmany_numbers=Combien de numéros utliser pour les numéros de comptes ?
 gr_export_type_bilan=Bilan
 gr_export_type_compteres=Compte de Résultat
+gr_export_type_compte_resultat=Compte de Résultat
 gr_export_type_sig=Solde Intermédiaire de Gestion
 gr_balance_aux=Balance Auxiliaire
 gr_borp=Bénéfice ou perte

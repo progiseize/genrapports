@@ -22,7 +22,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 
 class GenRapports {
 
-	public $group_prefix = '/ ';
+	public $group_prefix = '| ';
 	
 	private $tab_bilan;	
 	private $tab_compteresult;	
@@ -31,206 +31,207 @@ class GenRapports {
 
 	// GROUPES BILAN
 	private $group_bilan = array(
-		10 => array('formula' => '','cat_childs' => array('109%')),
-		20 => array('formula' => '','cat_childs' => array('201%','2801%')),
-		21 => array('formula' => '','cat_childs' => array('203%','2803%')),
-		22 => array('formula' => '','cat_childs' => array('205%','2805%','2905%')),
-		23 => array('formula' => '','cat_childs' => array('206%','2906%','207%','2807%','2907%')),
-		24 => array('formula' => '','cat_childs' => array('208%','2808%','2908%')),
-		25 => array('formula' => '','cat_childs' => array('237%')),
-		30 => array('formula' => '-1*(20+21+22+23+24+25)','cat_childs' => array()),
-		40 => array('formula' => '','cat_childs' => array('211%','2811%','2911%','212%','2812%')),
-		41 => array('formula' => '','cat_childs' => array('213%','2813%','214%','2814%')),
-		42 => array('formula' => '','cat_childs' => array('215%','2815%')),
-		43 => array('formula' => '','cat_childs' => array('218%','2818%')),
-		44 => array('formula' => '','cat_childs' => array('231%','2931%')),
-		45 => array('formula' => '','cat_childs' => array('238%')),
-		50 => array('formula' => '-1*(40+41+42+43+44+45)','cat_childs' => array()),
-		60 => array('formula' => '','cat_childs' => array('261%','2961%','266%','2966%')),
-		61 => array('formula' => '','cat_childs' => array('267%','268%','2968%','2967%')),
-		62 => array('formula' => '','cat_childs' => array('271%','2971%','272%','2972%','27682%')),
-		63 => array('formula' => '','cat_childs' => array('274%','2974%','27684%')),
-		64 => array('formula' => '','cat_childs' => array('275%','2975%','2761%','2976%','27685%','27688%')),
-		70 => array('formula' => '-1*(60+61+62+63+64)','cat_childs' => array()),
-		80 => array('formula' => '-1*(10)+30+50+70','cat_childs' => array()),
-		90 => array('formula' => '','cat_childs' => array('31%','391%','32%','392%')),
-		91 => array('formula' => '','cat_childs' => array('33%','393%','34%','394%')),
-		92 => array('formula' => '','cat_childs' => array('35%','395%')),
-		93 => array('formula' => '','cat_childs' => array('37%','397%')),
-		94 => array('formula' => '','cat_childs' => array('4091%')),
-		100 => array('formula' => '-1*(90+91+92+93+94)','cat_childs' => array()),
-		110 => array('formula' => '','cat_childs' => array('41188%','491%','413%','416%','417%','418%')),
-		131 => array('formula' => '','cat_childs' => array('50%','59%','500%')), // %?
-		287 => array('formula' => '','cat_childs' => array('43%','430%','431%','437%','4382%','4383%','4386%')), // %?
-		283 => array('formula' => '','cat_childs' => array('165%','166%','1675%','168%','17%','426%','45%','450%','455%')), // %?
-		111 => array('formula' => '','cat_childs' => array('40188%','4096%','495%','496%','4097%','4098%','425%','4287%','4387%','441%','443%','444%','4456%','4457%','44581%','44582%','44583%','44586%','4487%','451%','456%','4560%','458%','462%','465%','467%','4670%','4673%','4687%','478%','503%','44585%','4672%')), // %?
-		112 => array('formula' => '','cat_childs' => array('4562%')),
-		120 => array('formula' => '-1*(110+111+112)','cat_childs' => array()),
-		130 => array('formula' => '','cat_childs' => array('5021%')),
-		
-		132 => array('formula' => '','cat_childs' => array('52%')),
-		133 => array('formula' => '','cat_childs' => array('51%','510%','53%','54%','512%','517%','518%')), // %?
-		134 => array('formula' => '','cat_childs' => array('486%')),
-		140 => array('formula' => '-1*(130+131+132+133+134)','cat_childs' => array()),
-		150 => array('formula' => '100+120+140','cat_childs' => array()),
-		160 => array('formula' => '','cat_childs' => array('481%')),
-		170 => array('formula' => '','cat_childs' => array('169%')),
-		180 => array('formula' => '','cat_childs' => array('476%')),
-		190 => array('formula' => '80+150+160+170+180','cat_childs' => array()),
-		200 => array('formula' => '','cat_childs' => array('101%','108%')),
-		201 => array('formula' => '','cat_childs' => array('104%')),
-		202 => array('formula' => '','cat_childs' => array('105%')),
-		203 => array('formula' => '','cat_childs' => array('107%','1057%')),
-		210 => array('formula' => '','cat_childs' => array('1061%')),
-		211 => array('formula' => '','cat_childs' => array('1063%')),
-		212 => array('formula' => '','cat_childs' => array('1062%','1064%')),
-		213 => array('formula' => '','cat_childs' => array('1068%')),
-		214 => array('formula' => '','cat_childs' => array('11%')),
-		215 => array('formula' => '','cat_childs' => array('12%')),
-		216 => array('formula' => '','cat_childs' => array('13%')),
-		217 => array('formula' => '','cat_childs' => array('14%')),
-		220 => array('formula' => '200+201+202+203+210+211+212+213+214+215+216+217','cat_childs' => array()),
-		240 => array('formula' => '','cat_childs' => array('1671%')),
-		241 => array('formula' => '','cat_childs' => array('1674%')),
-		250 => array('formula' => '240+241','cat_childs' => array()),
-		261 => array('formula' => '','cat_childs' => array('15%')),
-		260 => array('formula' => '','cat_childs' => array('151%')),		
-		270 => array('formula' => '260+261','cat_childs' => array()),
-		280 => array('formula' => '','cat_childs' => array('161%','16881%')),
-		281 => array('formula' => '','cat_childs' => array('163%','16883%')),
-		282 => array('formula' => '','cat_childs' => array('164%','16884%','514%','5186%','519%')), // %?
-		
-		284 => array('formula' => '','cat_childs' => array('4191%')),
-		285 => array('formula' => '','cat_childs' => array('40199%','403%','4081%','4088%')),
-		286 => array('formula' => '','cat_childs' => array('421%','422%','424%','427%','4282%','4283%','4284%','4286%')),
-		288 => array('formula' => '','cat_childs' => array('4452%','4455%','44580%','44584%','44587%')),
-		289 => array('formula' => '','cat_childs' => array('442%','446%','447%','4482%','4486%')),
-		290 => array('formula' => '','cat_childs' => array('457%','269%','279%','404%','405%','4084%','41199%','4196%','4197%','4198%','464%','4686%','4671%','467AB%','509%','487%','477%')), // %?
-		300 => array('formula' => '280+281+282+283+284+285+286+287+288+289+290','cat_childs' => array()),
-		320 => array('formula' => '220+250+270+300','cat_childs' => array()),
+		'10' => array('formula' => '','cat_childs' => array('109%')),
+		'20' => array('formula' => '','cat_childs' => array('201%','2801%')),
+		'21' => array('formula' => '','cat_childs' => array('203%','2803%')),
+		'22' => array('formula' => '','cat_childs' => array('205%','2805%','2905%')),
+		'23' => array('formula' => '','cat_childs' => array('206%','207%','2906%','2807%','2907%')),
+		'24' => array('formula' => '','cat_childs' => array('208%','2808%','2908%')),
+		'25' => array('formula' => '','cat_childs' => array('237%')),
+		'30' => array('formula' => '-1*(20+21+22+23+24+25)','cat_childs' => array()),
+		'40' => array('formula' => '','cat_childs' => array('211%','212%','2811%','2911%','2812%')),
+		'41' => array('formula' => '','cat_childs' => array('213%','214%','2813%','2814%')),
+		'42' => array('formula' => '','cat_childs' => array('215%','2815%')),
+		'43' => array('formula' => '','cat_childs' => array('218%','2818%')),
+		'44' => array('formula' => '','cat_childs' => array('231%','2931%')),
+		'45' => array('formula' => '','cat_childs' => array('238%')),
+		'50' => array('formula' => '-1*(40+41+42+43+44+45)','cat_childs' => array()),
+		'60' => array('formula' => '','cat_childs' => array('261%','266%','2961%','2966%')),
+		'61' => array('formula' => '','cat_childs' => array('267%','268%','2968%','2967%')),
+		'62' => array('formula' => '','cat_childs' => array('271%','272%','2971%','2972%','27682%')),
+		'63' => array('formula' => '','cat_childs' => array('274%','2974%','27684%')),
+		'64' => array('formula' => '','cat_childs' => array('275%','2975%','2761%','2976%','27685%','27688%')),
+		'70' => array('formula' => '-1*(60+61+62+63+64)','cat_childs' => array()),
+		'80' => array('formula' => '-1*(10)+30+50+70','cat_childs' => array()),
+		'90' => array('formula' => '','cat_childs' => array('31%','32%','391%','392%')),
+		'91' => array('formula' => '','cat_childs' => array('33%','34%','393%','394%')),
+		'92' => array('formula' => '','cat_childs' => array('35%','395%')),
+		'93' => array('formula' => '','cat_childs' => array('37%','397%')),
+		'94' => array('formula' => '','cat_childs' => array('4091%')),
+		'100' => array('formula' => '-1*(90+91+92+93+94)','cat_childs' => array()),
+		'110' => array('formula' => '','cat_childs' => array('413%','416%','417%','418%','491%','41188%')),
+		'131' => array('formula' => '','cat_childs' => array('50%','59%','500%')), // %?
+		'287' => array('formula' => '','cat_childs' => array('43%','430%','431%','437%','4382%','4383%','4386%')), // %?
+		'283' => array('formula' => '','cat_childs' => array('17%','45%','165%','166%','168%','426%','450%','455%','1675%',)), // %?
+		'111' => array('formula' => '','cat_childs' => array(
+			'495%','496%','425%','441%','443%','444%','451%','456%','458%','462%','465%','467%','478%','503%',
+			'4097%','4098%','4287%','4387%','4456%','4457%','4487%','4560%','4670%','4673%','4687%','4672%','4096%','44585%',
+			'40188%','44581%','44582%','44583%','44586%')), // %?
+		'112' => array('formula' => '','cat_childs' => array('4562%')),
+		'120' => array('formula' => '-1*(110+111+112)','cat_childs' => array()),
+		'130' => array('formula' => '','cat_childs' => array('5021%')),		
+		'132' => array('formula' => '','cat_childs' => array('52%')),
+		'133' => array('formula' => '','cat_childs' => array('51%','53%','54%','510%','512%','517%','518%')), // %?
+		'134' => array('formula' => '','cat_childs' => array('486%')),
+		'140' => array('formula' => '-1*(130+131+132+133+134)','cat_childs' => array()),
+		'150' => array('formula' => '100+120+140','cat_childs' => array()),
+		'160' => array('formula' => '','cat_childs' => array('481%')),
+		'170' => array('formula' => '','cat_childs' => array('169%')),
+		'180' => array('formula' => '','cat_childs' => array('476%')),
+		'190' => array('formula' => '80+150+160+170+180','cat_childs' => array()),
+		'200' => array('formula' => '','cat_childs' => array('101%','108%')),
+		'201' => array('formula' => '','cat_childs' => array('104%')),
+		'202' => array('formula' => '','cat_childs' => array('105%')),
+		'203' => array('formula' => '','cat_childs' => array('107%','1057%')),
+		'210' => array('formula' => '','cat_childs' => array('1061%')),
+		'211' => array('formula' => '','cat_childs' => array('1063%')),
+		'212' => array('formula' => '','cat_childs' => array('1062%','1064%')),
+		'213' => array('formula' => '','cat_childs' => array('1068%')),
+		'214' => array('formula' => '','cat_childs' => array('11%')),
+		'215' => array('formula' => '','cat_childs' => array('12%')),
+		'216' => array('formula' => '','cat_childs' => array('13%')),
+		'217' => array('formula' => '','cat_childs' => array('14%')),
+		'220' => array('formula' => '200+201+202+203+210+211+212+213+214+215+216+217','cat_childs' => array()),
+		'240' => array('formula' => '','cat_childs' => array('1671%')),
+		'241' => array('formula' => '','cat_childs' => array('1674%')),
+		'250' => array('formula' => '240+241','cat_childs' => array()),
+		'261' => array('formula' => '','cat_childs' => array('15%')),
+		'260' => array('formula' => '','cat_childs' => array('151%')),		
+		'270' => array('formula' => '260+261','cat_childs' => array()),
+		'280' => array('formula' => '','cat_childs' => array('161%','16881%')),
+		'281' => array('formula' => '','cat_childs' => array('163%','16883%')),
+		'282' => array('formula' => '','cat_childs' => array('164%','16884%','514%','5186%','519%')),		
+		'284' => array('formula' => '','cat_childs' => array('4191%')),
+		'285' => array('formula' => '','cat_childs' => array('403%','4081%','4088%','40199%')),
+		'286' => array('formula' => '','cat_childs' => array('421%','422%','424%','427%','4282%','4283%','4284%','4286%')),
+		'288' => array('formula' => '','cat_childs' => array('4452%','4455%','44580%','44584%','44587%')),
+		'289' => array('formula' => '','cat_childs' => array('442%','446%','447%','4482%','4486%')),
+		'290' => array('formula' => '','cat_childs' => array('457%','269%','279%','404%','405%','464%','509%','487%','477%','4084%','41199%','4196%','4197%','4198%','4686%','4671%','467AB%')), // %?
+		'300' => array('formula' => '280+281+282+283+284+285+286+287+288+289+290','cat_childs' => array()),
+		'320' => array('formula' => '220+250+270+300','cat_childs' => array()),
 	);
 
 	// GROUPES COMPTE DE RESULTAT
 	private $group_compteresult = array(
-		34 => array('formula' => '','cat_childs' => array('7%')),
-		10 => array('formula' => '','cat_childs' => array('707%','709%')),
-		11 => array('formula' => '','cat_childs' => array('701%','702%','703%')),
-		12 => array('formula' => '','cat_childs' => array('704%','705%','706%','708%')),
-		20 => array('formula' => '10+11+12','cat_childs' => array()),
-		30 => array('formula' => '','cat_childs' => array('713%')),
-		31 => array('formula' => '','cat_childs' => array('720%','730%')),
-		32 => array('formula' => '','cat_childs' => array('740%')),
-		33 => array('formula' => '','cat_childs' => array('781%','791%')),		
-		40 => array('formula' => '30+31+32+33+34+20','cat_childs' => array()),
-		60 => array('formula' => '','cat_childs' => array('6%')),
-		50 => array('formula' => '','cat_childs' => array('607%','6087%','6097%')),
-		51 => array('formula' => '','cat_childs' => array('6037%')),
-		52 => array('formula' => '','cat_childs' => array('601%','602%','6081%','6082%','6091%','6092%')),
-		53 => array('formula' => '','cat_childs' => array('6031%','6032%')),
-		54 => array('formula' => '','cat_childs' => array('604%','605%','606%','6084%','6085%','6086%','6094%','6095%','6096%','61%','62%')),
-		55 => array('formula' => '','cat_childs' => array('63%')),
-		56 => array('formula' => '','cat_childs' => array('641%','644%','648%')),
-		57 => array('formula' => '','cat_childs' => array('645%','646%','647%','648%')),
-		58 => array('formula' => '','cat_childs' => array('6811%','6812%')),
-		59 => array('formula' => '','cat_childs' => array('6815%','6816%','6817%')),		
-		70 => array('formula' => '50+51+52+53+54+55+56+57+58+59+60','cat_childs' => array()),
-		80 => array('formula' => '40+70','cat_childs' => array()),
-		90 => array('formula' => '','cat_childs' => array('755%')),
-		91 => array('formula' => '','cat_childs' => array('655%')),
-		92 => array('formula' => '','cat_childs' => array('761%')),
-		93 => array('formula' => '','cat_childs' => array('762%')),
-		94 => array('formula' => '','cat_childs' => array('763%','764%','765%','768%')),
-		95 => array('formula' => '','cat_childs' => array('786%','796%')),
-		96 => array('formula' => '','cat_childs' => array('766%')),
-		97 => array('formula' => '','cat_childs' => array('767%')),
-		100 => array('formula' => '92+93+94+95+96+97','cat_childs' => array()),
-		110 => array('formula' => '','cat_childs' => array('686%')),
-		111 => array('formula' => '','cat_childs' => array('661%','664%','665%','668%')),
-		112 => array('formula' => '','cat_childs' => array('666%')),
-		113 => array('formula' => '','cat_childs' => array('667%')),
-		120 => array('formula' => '110+111+112+113','cat_childs' => array()),
-		130 => array('formula' => '100+120','cat_childs' => array()),
-		140 => array('formula' => '40+70+90+91+100+120','cat_childs' => array()),
-		150 => array('formula' => '','cat_childs' => array('771%')),
-		151 => array('formula' => '','cat_childs' => array('775%','777%','778%')),
-		152 => array('formula' => '','cat_childs' => array('787%','798%')),
-		160 => array('formula' => '150+151+152','cat_childs' => array()),
-		170 => array('formula' => '','cat_childs' => array('671%')),
-		171 => array('formula' => '','cat_childs' => array('675%','678%')),
-		172 => array('formula' => '','cat_childs' => array('687%')),
-		180 => array('formula' => '170+171+172','cat_childs' => array()),
-		190 => array('formula' => '160+180','cat_childs' => array()),
-		200 => array('formula' => '','cat_childs' => array('691%')),
-		210 => array('formula' => '','cat_childs' => array('695%','697%','689%','698%','699%','789%')),
-		220 => array('formula' => '40+90+100+160','cat_childs' => array()),
-		230 => array('formula' => '70+91+120+180+200+210','cat_childs' => array()),
-		240 => array('formula' => '220+230','cat_childs' => array())
+		'34' => array('formula' => '','cat_childs' => array('7%')),
+		'10' => array('formula' => '','cat_childs' => array('707%','709%')),
+		'11' => array('formula' => '','cat_childs' => array('701%','702%','703%')),
+		'12' => array('formula' => '','cat_childs' => array('704%','705%','706%','708%')),
+		'20' => array('formula' => '10+11+12','cat_childs' => array()),
+		'30' => array('formula' => '','cat_childs' => array('713%')),
+		'31' => array('formula' => '','cat_childs' => array('720%','730%')),
+		'32' => array('formula' => '','cat_childs' => array('740%')),
+		'33' => array('formula' => '','cat_childs' => array('781%','791%')),		
+		'40' => array('formula' => '30+31+32+33+34+20','cat_childs' => array()),
+		'60' => array('formula' => '','cat_childs' => array('6%')),
+		'50' => array('formula' => '','cat_childs' => array('607%','6087%','6097%')),
+		'51' => array('formula' => '','cat_childs' => array('6037%')),
+		'52' => array('formula' => '','cat_childs' => array('601%','602%','6081%','6082%','6091%','6092%')),
+		'53' => array('formula' => '','cat_childs' => array('6031%','6032%')),
+		'54' => array('formula' => '','cat_childs' => array('604%','605%','606%','6084%','6085%','6086%','6094%','6095%','6096%','61%','62%')),
+		'55' => array('formula' => '','cat_childs' => array('63%')),
+		'56' => array('formula' => '','cat_childs' => array('641%','644%','648%')),
+		'57' => array('formula' => '','cat_childs' => array('645%','646%','647%','648%')),
+		'58' => array('formula' => '','cat_childs' => array('6811%','6812%')),
+		'59' => array('formula' => '','cat_childs' => array('6815%','6816%','6817%')),		
+		'70' => array('formula' => '50+51+52+53+54+55+56+57+58+59+60','cat_childs' => array()),
+		'80' => array('formula' => '40+70','cat_childs' => array()),
+		'90' => array('formula' => '','cat_childs' => array('755%')),
+		'91' => array('formula' => '','cat_childs' => array('655%')),
+		'92' => array('formula' => '','cat_childs' => array('761%')),
+		'93' => array('formula' => '','cat_childs' => array('762%')),
+		'94' => array('formula' => '','cat_childs' => array('763%','764%','765%','768%')),
+		'95' => array('formula' => '','cat_childs' => array('786%','796%')),
+		'96' => array('formula' => '','cat_childs' => array('766%')),
+		'97' => array('formula' => '','cat_childs' => array('767%')),
+		'100' => array('formula' => '92+93+94+95+96+97','cat_childs' => array()),
+		'110' => array('formula' => '','cat_childs' => array('686%')),
+		'111' => array('formula' => '','cat_childs' => array('661%','664%','665%','668%')),
+		'112' => array('formula' => '','cat_childs' => array('666%')),
+		'113' => array('formula' => '','cat_childs' => array('667%')),
+		'120' => array('formula' => '110+111+112+113','cat_childs' => array()),
+		'130' => array('formula' => '100+120','cat_childs' => array()),
+		'140' => array('formula' => '40+70+90+91+100+120','cat_childs' => array()),
+		'150' => array('formula' => '','cat_childs' => array('771%')),
+		'151' => array('formula' => '','cat_childs' => array('775%','777%','778%')),
+		'152' => array('formula' => '','cat_childs' => array('787%','798%')),
+		'160' => array('formula' => '150+151+152','cat_childs' => array()),
+		'170' => array('formula' => '','cat_childs' => array('671%')),
+		'171' => array('formula' => '','cat_childs' => array('675%','678%')),
+		'172' => array('formula' => '','cat_childs' => array('687%')),
+		'180' => array('formula' => '170+171+172','cat_childs' => array()),
+		'190' => array('formula' => '160+180','cat_childs' => array()),
+		'200' => array('formula' => '','cat_childs' => array('691%')),
+		'210' => array('formula' => '','cat_childs' => array('695%','697%','689%','698%','699%','789%')),
+		'220' => array('formula' => '40+90+100+160','cat_childs' => array()),
+		'230' => array('formula' => '70+91+120+180+200+210','cat_childs' => array()),
+		'240' => array('formula' => '220+230','cat_childs' => array())
 	);
 
 	//
 	private $group_sig = array(
-		10 => array('formula' => '','cat_childs' => array('701%')),
-		12 => array('formula' => '','cat_childs' => array('706%','7083%')),
-		20 => array('formula' => '10+12','cat_childs' => array()),
-		30 => array('formula' => '','cat_childs' => array('707%','7070%','7071%','70791%','7085%','7089%','70891%','709%','7097%')),
-		31 => array('formula' => '','cat_childs' => array('7079','70790%')),
-		40 => array('formula' => '30+31','cat_childs' => array()),
-		60 => array('formula' => '20+40','cat_childs' => array()),
-		167 => array('formula' => '','cat_childs' => array('604%','6040%')),
-		90 => array('formula' => '','cat_childs' => array('611%','6041%')),
-		91 => array('formula' => '','cat_childs' => array('6241%','6242%','6244%')),
-		100 => array('formula' => '90+91','cat_childs' => array()),
-		110 => array('formula' => '','cat_childs' => array('607%','609%')),
-		111 => array('formula' => '','cat_childs' => array('6037%')),
-		120 => array('formula' => '110+111','cat_childs' => array()),
-		130 => array('formula' => '20','cat_childs' => array()),
-		140 => array('formula' => '40+120+90+91','cat_childs' => array()),
-		150 => array('formula' => '130+140','cat_childs' => array()),
-		160 => array('formula' => '150/60','cat_childs' => array()),
-		166 => array('formula' => '','cat_childs' => array('606%','6060%','6064%','6181%','623%','6230%','6234%','6236%','6238%','651%')),
-		164 => array('formula' => '','cat_childs' => array('60611%','60612%')),
-		165 => array('formula' => '','cat_childs' => array('6063%')),
-		175 => array('formula' => '','cat_childs' => array('613%','6130%','6131%','61352%','6156%','6261%','6262%','626%')),
-		172 => array('formula' => '','cat_childs' => array('615%','6150%','6155%','61550%')),
-		168 => array('formula' => '','cat_childs' => array('6132%','6152%')),
-		170 => array('formula' => '','cat_childs' => array('61361%','61362%','61368%','61552%')),
+		'10' => array('formula' => '','cat_childs' => array('701%')),
+		'12' => array('formula' => '','cat_childs' => array('706%','7083%')),
+		'20' => array('formula' => '10+12','cat_childs' => array()),
+		'30' => array('formula' => '','cat_childs' => array('707%','7070%','7071%','70791%','7085%','7089%','70891%','709%','7097%')),
+		'31' => array('formula' => '','cat_childs' => array('7079','70790%')),
+		'40' => array('formula' => '30+31','cat_childs' => array()),
+		'60' => array('formula' => '20+40','cat_childs' => array()),
+		'167' => array('formula' => '','cat_childs' => array('604%','6040%')),
+		'90' => array('formula' => '','cat_childs' => array('611%','6041%')),
+		'91' => array('formula' => '','cat_childs' => array('6241%','6242%','6244%')),
+		'100' => array('formula' => '90+91','cat_childs' => array()),
+		'110' => array('formula' => '','cat_childs' => array('607%','609%')),
+		'111' => array('formula' => '','cat_childs' => array('6037%')),
+		'120' => array('formula' => '110+111','cat_childs' => array()),
+		'130' => array('formula' => '20','cat_childs' => array()),
+		'140' => array('formula' => '40+120+90+91','cat_childs' => array()),
+		'150' => array('formula' => '130+140','cat_childs' => array()),
+		'160' => array('formula' => '150/60','cat_childs' => array()),
+		'166' => array('formula' => '','cat_childs' => array('606%','6060%','6064%','6181%','623%','6230%','6234%','6236%','6238%','651%')),
+		'164' => array('formula' => '','cat_childs' => array('60611%','60612%')),
+		'165' => array('formula' => '','cat_childs' => array('6063%')),
+		'175' => array('formula' => '','cat_childs' => array('613%','626%','6130%','6131%','61352%','6156%','6261%','6262%')),
+		'172' => array('formula' => '','cat_childs' => array('615%','6150%','6155%','61550%')),
+		'168' => array('formula' => '','cat_childs' => array('6132%','6152%')),
+		'170' => array('formula' => '','cat_childs' => array('61361%','61362%','61368%','61552%')),
 		
 		
-		176 => array('formula' => '','cat_childs' => array('6231%')),
-		177 => array('formula' => '','cat_childs' => array('616%')),
-		178 => array('formula' => '','cat_childs' => array('6226%','6227%','6281%')),
-		180 => array('formula' => '','cat_childs' => array('60613%','6251%','6257%')),
-		181 => array('formula' => '','cat_childs' => array('627%','6273%','6275%','6272%')),
-		182 => array('formula' => '','cat_childs' => array('6271%')),
-		190 => array('formula' => '164+165+166+167+168+170+172+175+176+177+178+180+181+182','cat_childs' => array()),
-		200 => array('formula' => '150+190','cat_childs' => array()),
-		210 => array('formula' => '','cat_childs' => array('6411%','6414%','6451%','6453%','6456%')),
-		220 => array('formula' => '210','cat_childs' => array()),
-		231 => array('formula' => '','cat_childs' => array('6211%')),
-		240 => array('formula' => '231','cat_childs' => array()),
-		250 => array('formula' => '','cat_childs' => array('62823%','633%','6475%')),
-		260 => array('formula' => '220+240+250','cat_childs' => array()),
-		280 => array('formula' => '260','cat_childs' => array()),
-		290 => array('formula' => '','cat_childs' => array('74%')),
-		292 => array('formula' => '','cat_childs' => array('6312%','6313%','63511%','6354%','637%')),
-		300 => array('formula' => '200+280+290+292','cat_childs' => array()),
-		310 => array('formula' => '300+(-1)*292','cat_childs' => array()),
-		320 => array('formula' => '','cat_childs' => array('758%','763%','79%','791%')),
-		321 => array('formula' => '','cat_childs' => array('68111%','68112%')),
-		322 => array('formula' => '','cat_childs' => array('6875%')),
-		323 => array('formula' => '','cat_childs' => array('78725%')),
-		324 => array('formula' => '','cat_childs' => array('654%','658%')),
-		330 => array('formula' => '300+320+321+322+323+324','cat_childs' => array()),
-		340 => array('formula' => '','cat_childs' => array('661%')),
-		343 => array('formula' => '','cat_childs' => array('768%')),
-		350 => array('formula' => '340+343','cat_childs' => array()),
-		360 => array('formula' => '330+350','cat_childs' => array()),
-		370 => array('formula' => '','cat_childs' => array('671%','6712%')),
-		380 => array('formula' => '370','cat_childs' => array()),
-		390 => array('formula' => '360+380','cat_childs' => array()),
-		410 => array('formula' => '390','cat_childs' => array()),
-		420 => array('formula' => '390+(-1)*350+(-0.15)*172+(-0.15)*168+(-1)*321','cat_childs' => array()),
-		430 => array('formula' => '410','cat_childs' => array()),
+		'176' => array('formula' => '','cat_childs' => array('6231%')),
+		'177' => array('formula' => '','cat_childs' => array('616%')),
+		'178' => array('formula' => '','cat_childs' => array('6226%','6227%','6281%')),
+		'180' => array('formula' => '','cat_childs' => array('60613%','6251%','6257%')),
+		'181' => array('formula' => '','cat_childs' => array('627%','6273%','6275%','6272%')),
+		'182' => array('formula' => '','cat_childs' => array('6271%')),
+		'190' => array('formula' => '164+165+166+167+168+170+172+175+176+177+178+180+181+182','cat_childs' => array()),
+		'200' => array('formula' => '150+190','cat_childs' => array()),
+		'210' => array('formula' => '','cat_childs' => array('6411%','6414%','6451%','6453%','6456%')),
+		'220' => array('formula' => '210','cat_childs' => array()),
+		'231' => array('formula' => '','cat_childs' => array('6211%')),
+		'240' => array('formula' => '231','cat_childs' => array()),
+		'250' => array('formula' => '','cat_childs' => array('62823%','633%','6475%')),
+		'260' => array('formula' => '220+240+250','cat_childs' => array()),
+		'280' => array('formula' => '260','cat_childs' => array()),
+		'290' => array('formula' => '','cat_childs' => array('74%')),
+		'292' => array('formula' => '','cat_childs' => array('6312%','6313%','63511%','6354%','637%')),
+		'300' => array('formula' => '200+280+290+292','cat_childs' => array()),
+		'310' => array('formula' => '300+(-1)*292','cat_childs' => array()),
+		'320' => array('formula' => '','cat_childs' => array('758%','763%','79%','791%')),
+		'321' => array('formula' => '','cat_childs' => array('68111%','68112%')),
+		'322' => array('formula' => '','cat_childs' => array('6875%')),
+		'323' => array('formula' => '','cat_childs' => array('78725%')),
+		'324' => array('formula' => '','cat_childs' => array('654%','658%')),
+		'330' => array('formula' => '300+320+321+322+323+324','cat_childs' => array()),
+		'340' => array('formula' => '','cat_childs' => array('661%')),
+		'343' => array('formula' => '','cat_childs' => array('768%')),
+		'350' => array('formula' => '340+343','cat_childs' => array()),
+		'360' => array('formula' => '330+350','cat_childs' => array()),
+		'370' => array('formula' => '','cat_childs' => array('671%','6712%')),
+		'380' => array('formula' => '370','cat_childs' => array()),
+		'390' => array('formula' => '360+380','cat_childs' => array()),
+		'410' => array('formula' => '390','cat_childs' => array()),
+		'420' => array('formula' => '390+(-1)*350+(-0.15)*172+(-0.15)*168+(-1)*321','cat_childs' => array()),
+		'430' => array('formula' => '410','cat_childs' => array()),
 	);
 	
 	public $table_c_accounting_category = 'c_accounting_category';
@@ -285,7 +286,10 @@ class GenRapports {
 	        $dir_day = $dir.'/'.$d;
 	        if (!is_dir($dir_day)): if(!mkdir($dir_day,0755)): setEventMessages($langs->trans('gr_error_crea_folder'), null, 'errors'); endif; endif;
 
-	        $csv_details = new ExportCsv($this->db);
+	        $version = explode('.', DOL_VERSION); // ON RECUPERE LA VERSION DE DOLIBARR
+	        if(intval($version[0]) >= 18): $csv_details = new ExportCsvUtf8($this->db);
+	        else: $csv_details = new ExportCsv($this->db);
+	        endif;
 
 	        // ON DONNE UN NOM AU FICHIER
 	        $file_title = 'genrapports-bookkeepings-'.$num_compte.'-'.$d.'.'.$csv_details->extension;
@@ -603,18 +607,15 @@ class GenRapports {
 	/*****************************************************************/
 	// 
 	/*****************************************************************/
-	public function tableau_resultat($date_start,$date_end,$showaccountdetail, $mode = 'affichage',$action = 'bilan',$array_of_files = array()){
+	public function tableau_resultat($date_start,$date_end,$showaccountdetail,$mode = '',$action = 'bilan',$array_of_files = array()){ 
 
-	    global $conf, $user, $langs;
+		global $conf, $user, $langs;
 
-	    $conf->global->EXPORT_CSV_FORCE_CHARSET = "UTF-8";
-	    $entity = $conf->entity;
-
-	    $view = ""; 
-	    $error = 0;
-
-	    // SI ON EST PAS EN MODE CALCUL, ON CREE UN FICHIER D'EXPORT
+		
+		// SI ON EST PAS EN MODE CALCUL, ON CREE UN FICHIER D'EXPORT
 	    if($mode != 'calcul'):
+
+	    	$conf->global->EXPORT_CSV_FORCE_CHARSET = "UTF-8";
 
 	        // ON DEFINIT LE REPERTOIRE PRINCIPAL ET ON LE CREE SI BESOIN
 	        $dir = DOL_DATA_ROOT.'/genrapports';
@@ -624,7 +625,10 @@ class GenRapports {
 	        $dir_day = $dir.'/'.$d;
 	        if (!is_dir($dir_day)): if(!mkdir($dir_day,0755)): setEventMessages($langs->trans('gr_error_crea_folder'), null, 'errors'); endif; endif;
 
-	        $csv_file = new ExportCsv($this->db);
+	        $version = explode('.', DOL_VERSION); // ON RECUPERE LA VERSION DE DOLIBARR
+	        if(intval($version[0]) >= 18): $csv_file = new ExportCsvUtf8($this->db);
+	        else: $csv_file = new ExportCsv($this->db);
+	        endif;
 
 	        // ON DONNE UN NOM AU FICHIER
 	        $file_date = date('d_m_Y');
@@ -634,37 +638,13 @@ class GenRapports {
 	        $dir_file = $dir_day.'/'.$file_title;
 	        $download_file = urlencode($d.'/'.$file_title);
 
-	        $n = dol_now();
-
 	        $files_rapport = array();
-	        $files_rapport[$action] = DOL_URL_ROOT.'/document.php?modulepart=genrapports&file='.$download_file.'&entity='.$entity;
-	               
+	        $files_rapport[$action] = DOL_URL_ROOT.'/document.php?modulepart=genrapports&file='.$download_file.'&entity='.$conf->entity;
+	        
+	        // S'il y a des fichiers envoyés à la fonction, on les ajoute
 	        if(!empty($array_of_files)): foreach ($array_of_files as $label => $fichier):
-	            $files_rapport[$label] = DOL_URL_ROOT.'/document.php?modulepart=genrapports&file='.$fichier.'&entity='.$entity;
+	            $files_rapport[$label] = DOL_URL_ROOT.'/document.php?modulepart=genrapports&file='.$fichier.'&entity='.$conf->entity;
 	        endforeach; endif;
-
-	        /*$view .= '<div class="gen-results">';
-	        $view .= '<div class="pg-col-desc">'.$langs->trans('gr_index_rapport_generatetime').' '.date('d/m/Y', $n).' &agrave; '.date('H:i:s', $n).'</div>';
-	        $view .= '<div id="pg-result-buttons">';
-	        $view .= '<a class="dwnld-button" href="'.DOL_URL_ROOT.'/document.php?modulepart=genrapports&file='.$download_file.'&entity='.$entity.'">'.$langs->trans('gr_button_downloadfile').'</a>';
-
-	        if(!empty($array_of_files)): foreach ($array_of_files as $label => $fichier):
-	            
-	            $view .= '<a class="dwnld-button" href="'.DOL_URL_ROOT.'/document.php?modulepart=genrapports&file='.$fichier.'&entity='.$entity.'">'.$label.'</a>';
-
-	        endforeach; endif;
-
-	        $view .= '</div>'; 
-	        $view .= '</div>';*/
-
-	        /*if($action == 'bilan'):
-	            $view .= '<form  enctype="multipart/form-data" action="'.$_SERVER["PHP_SELF"].'" method="post">';
-	            $view .= '<input type="hidden" name="action" value="sauvegarde">';
-	            $view .= '<input type="hidden" name="gen-datestart" value="'.$date_start.'">';
-	            $view .= '<input type="hidden" name="gen-dateend" value="'.$date_end.'">';
-	            $view .= '<input type="submit" value="Sauvegarder">';
-	            $view .= '</form">';
-	        endif;*/
 
 	        // ON OUVRE LE FICHIER
 	        $csv_file->open_file($dir_file,$langs);
@@ -674,442 +654,264 @@ class GenRapports {
 
 	    endif;
 
-	    $date_start = explode('-', $date_start);
-	    $date_end = explode('-', $date_end);
+		// On recupère les catégories
+		$AccCat = new AccountancyCategoryMod($this->db);
+	    $accountancy_categories = $AccCat->getCats(-1,1); // All and active
 
-	    $ndt_start = $date_start;
-	    $ndt_end = $date_end;
+	    if (!is_array($accountancy_categories) && $accountancy_categories < 0): setEventMessages(null, $AccCat->errors, 'errors'); return false; endif;
 
-	    $dts = $date_start[2].'/'.$date_start[1].'/'.$date_start[0]; 
-	    $dte = $date_end[2].'/'.$date_end[1].'/'.$date_end[0];
+		// 
+		$date_start_obj = new DateTime($date_start);
+		$date_end_obj = new DateTime($date_end. '23:59:59');
+		$date_diff = $date_start_obj->diff($date_end_obj,1);
 
-	    $months = array(
-	        1 => $langs->trans("MonthShort01"),
-	        2 => $langs->trans("MonthShort02"),
-	        3 => $langs->trans("MonthShort03"),
-	        4 => $langs->trans("MonthShort04"),
-	        5 => $langs->trans("MonthShort05"),
-	        6 => $langs->trans("MonthShort06"),
-	        7 => $langs->trans("MonthShort07"),
-	        8 => $langs->trans("MonthShort08"),
-	        9 => $langs->trans("MonthShort09"),
-	        10 => $langs->trans("MonthShort10"),
-	        11 => $langs->trans("MonthShort11"),
-	        12 => $langs->trans("MonthShort12"),
-	    );
+		// On calcule la difference de dates	    
+		$diffmonth = ($date_diff->y * 12) + $date_diff->m;
+		$diffmonth++;
 
-	    $listm = array();
+		////////
+		$res = array();
+		$interval = DateInterval::createFromDateString('1 month');
 
-	    // On supprime les mois en trop dans l'année
-	    foreach ($months as $k => $v):
+		if($mode != 'calcul'):
+	        $tab_head = '<tr class="">';
+	        $tab_head .= '<th class="left">'.$langs->trans('AccountingCategory').'</th>';     
+	        $tab_head .= '<th class="right" >'.$date_start_obj->format('d/m/Y').' - '.$date_end_obj->format('d/m/Y').'</th>';
 
-	        // SI MEME ANNEE
-	        if(intval($date_start[0]) == intval($date_end[0])):
-	            if($k < intval($date_start[1])): unset($months[$k]); endif;
-	            if($k > intval($date_end[1])): unset($months[$k]); endif;
-	        endif;
+	        $tab_labels = array($langs->trans('Group'),html_entity_decode($langs->trans("AccountingCategory")), $date_start_obj->format('d/m/Y').' - '.$date_end_obj->format('d/m/Y'));
+	        $tab_type_labels = array('Text','Text','Text');
 
-	        // SI ANNEE DIFF, ON REARRANGE LES MOIS
-	        if(intval($date_start[0]) < intval($date_end[0])):	            
+	    endif;
 
-	            $f_month = intval($date_start[1]);
-	            while($f_month <= 12):
-	                $listm[$f_month] = $months[$f_month];
-	                $f_month++;
-	            endwhile;
+		$i = 1;
+		while($i <= $diffmonth): 
 
-	            $i = 0;
-	            while ($i < intval($date_start[1])): $i++;
-	                $listm[$i] = $months[$i];
-	            endwhile;
+			// On definit la periode
+			if($i == 1): 
+				$periodstart = $date_start_obj->format('Y-m-d');
+				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
+			elseif($i == $diffmonth):
+				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
+				$periodend = $date_end_obj->format('Y-m-d');
+			else: 
+				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
+				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
+			endif;
 
-	        endif;
-	    endforeach;
-	    if(!empty($listm)): $months = $listm; endif;
+			$res[$date_start_obj->format('Y-m')] = array(
+				'label' => $langs->trans('MonthShort'.sprintf("%02s", $date_start_obj->format('m'))),
+				'period_start' => $periodstart,
+				'period_end' => $periodend,
+				'month' => $date_start_obj->format('m'),
+				'year' => $date_start_obj->format('Y'),
+				'categories' => array(),
+			);
 
-	    // ON SELECTIONNE LA PLAGE DE DATE
-	    $date_start = dol_mktime(0, 0, 0, $date_start[1], $date_start[2], $date_start[0]); // 24-12-2020 // 2020-12-24
-	    $date_end = dol_mktime(23, 59, 59, $date_end[1], $date_end[2], $date_end[0]);
-
-	    // $date_start and $date_end are defined. We force $start_year and $nbofyear ----> PERIODE PRECEDENTE
-	    $tmps = dol_getdate($date_start);
-	    $start_year = $tmps['year'];
-	    $start_month = $tmps['mon'];
-	    $tmpe = dol_getdate($date_end);
-	    $year_end = $tmpe['year'];
-	    $month_end = $tmpe['mon'];
-	    $nbofyear = ($year_end - $start_year) + 1;
-
-	    $date_start_previous = dol_time_plus_duree($date_start, -1, 'y');
-	    $date_end_previous = dol_time_plus_duree($date_end, -1, 'y');
-
-	    // --- //
-
-	    $cat_id = null;
-	    $modecompta = $conf->global->ACCOUNTING_MODE;
-
-	    // Security check
-	    if ($user->socid > 0): accessforbidden(); endif;
-	    if (!$user->rights->accounting->comptarapport->lire): accessforbidden(); endif; 
-
-	    $AccCat = new AccountancyCategoryMod($this->db);
-	    $cats = $AccCat->getCats();
-
-	    if($mode != 'calcul'):
-
-	        //$tab_head .= '<th>'.$langs->trans("PreviousPeriod").'</th>';
-	        //html_entity_decode($langs->trans("PreviousPeriod"))
-
-	        $tab_head = '<tr class="liste_titre pgsz-optiontable-coltitle">';
-	        $tab_head .= '<th colspan="2">'.$langs->trans('AccountingCategory').'</th>';     
-	        $tab_head .= '<th class="right" >'.$dts.' - '.$dte.'</th>';
-
-	        $tab_labels = array(html_entity_decode($langs->trans("AccountingCategory")), $dts.' - '.$dte);
-	        $tab_type_labels = array('Text','Text');
-
-	        $nbm = 0;
-
-	        foreach ($months as $k => $v):
-	            $tab_head .= '<th class="right width50">'.$langs->trans('MonthShort'.sprintf("%02s", intval($k))).'</th>';        
-	            array_push($tab_labels, html_entity_decode($langs->trans('MonthShort'.sprintf("%02s", intval($k)))));
+			if($mode != 'calcul'):
+		        $tab_head .= '<th class="right width50" style="white-space:nowrap;">'.$langs->trans('MonthShort'.sprintf("%02s", $date_start_obj->format('m'))).' '.$date_start_obj->format('Y').'</th>';
+		        array_push($tab_labels, html_entity_decode($langs->trans('MonthShort'.sprintf("%02s", $date_start_obj->format('m')))));
 	            array_push($tab_type_labels, 'Text');
-	        endforeach;
-
-	        $tab_head .= '</tr>';
-
-	        $csv_file->write_title($tab_labels,$tab_labels,$langs,$tab_type_labels);
-
-	    endif;
-
-	    $j = 1;
-	    $sommes = array();
-	    $totPerAccount = array();
-
-	    if (!is_array($cats) && $cats < 0): setEventMessages(null, $AccCat->errors, 'errors');
-	    elseif (is_array($cats) && count($cats) > 0):
-
-	        foreach ($cats as $cat):
-
-	            //if($mode != 'calcul'): echo '--- '.$cat['code'].'<br>'; endif;
-
-	            // Loop on each group
-	            if (!empty($cat['category_type'])):
-	                                
-	                $formula = $cat['formula'];
-
-	                if($mode != 'calcul'):
-
-	                    $tab_line = array(); $tab_type_line = array();
-
-	                    $view .= '<tr class="oddeven pgsz-optiontable-tr liste_total">';
-	                    $view .= '<td>'.$cat['code'].'</td>';
-	                    $view .= '<td>'.$cat['label'].'</td>';
-
-	                    array_push($tab_line,$cat['code'].' '.$cat['label']);
-	                    array_push($tab_type_line, 'Text');
-
-	                endif;
-
-	                $vars = array();
-
-	                // Previous Fiscal year (N-1)
-	                foreach ($sommes as $code => $det): 
-	                    if(is_null($det['N'])): $valdet = 0; else: $valdet = $det['N']; endif;
-	                    $vars[$code] = $valdet;
-	                endforeach;
-
-	                $result = strtr($formula, $vars);
-	                $r = dol_eval($result, 1);
-
-	                if($mode != 'calcul'):
-	                    // $view .= '<td class="liste_total right">'.price($r).'</td>';
-	                    // array_push($tab_line,price($r));
-	                    // array_push($tab_type_line, 'Numeric');                   
-	                endif;
-
-	                $code = $cat['code']; // code of categorie ('VTE', 'MAR', ...)
-	                $sommes[$code]['NP'] += $r;
-
-	                if (is_array($sommes) && !empty($sommes)): foreach ($sommes as $code => $det):
-
-	                    if(is_null($det['N'])): $valdet = 0; else: $valdet = $det['N']; endif;
-	                    $vars[$code] = $valdet;
-
-	                endforeach; endif;
-
-	                $result = strtr($formula, $vars);
-	                $r = dol_eval($result, 1);
-
-	                if($mode != 'calcul'):
-
-	                    $view .= '<td class="right">'.price($r).'</td>';                
-	                    array_push($tab_line,price($r));
-	                    array_push($tab_type_line, 'Numeric');
-
-	                endif;
-
-	                $sommes[$code]['N'] += $r;
-
-	                if($mode != 'calcul'):
-
-	                    // Detail par mois
-	                    foreach ($months as $k => $v):
-	                        if (($k) >= $start_month):
-	                            foreach ($sommes as $code => $det):
-	                                if(!is_null($det['M'][$k])): $vars[$code] = $det['M'][$k];
-	                                else: $vars[$code] = 0;
-	                                endif;
-	                                
-	                            endforeach;
-	                            $result = strtr($formula, $vars);
-	                            $r = dol_eval($result, 1);
-	                            $view .= '<td class="right">'.price($r).'</td>';                            
-	                            array_push($tab_line,price($r));
-	                            array_push($tab_type_line, 'Numeric');
-	                            $sommes[$code]['M'][$k] += $r;
-	                        endif;
-	                    endforeach;
-
-	                    foreach ($months as $k => $v):
-	                        if (($k) < $start_month):
-	                            foreach ($sommes as $code => $det):
-	                                if(!is_null($det['M'][$k])): $vars[$code] = $det['M'][$k];
-	                                else: $vars[$code] = 0;
-	                                endif;
-	                            endforeach;
-	                            $result = strtr($formula, $vars);
-	                            $r = dol_eval($result, 1);
-	                            $view .= '<td class="liste_total right">'.price($r).'</td>';
-	                            array_push($tab_line,price($r));
-	                            array_push($tab_type_line, 'Numeric');
-	                            $sommes[$code]['M'][$k] += $r;
-	                        endif;
-	                    endforeach;
-
-	                endif;
-
-	                $view .= "</tr>\n";
-	                if($mode != 'calcul'): $csv_file->write_title($tab_line,$tab_line,$langs,$tab_type_line); /*var_dump($csv_file);*/endif;
-
-	            else:
-
-	                $code = $cat['code'];
-
-	                $totCat = array();
-	                $totCat['NP'] = 0;
-	                $totCat['N'] = 0;
-	                $totCat['M'] = array();
-	                foreach ($months as $k => $v): $totCat['M'][$k] = 0; endforeach;
-
-	                $cpts = $AccCat->getCptsCat($cat['rowid']);
-	                $arrayofaccountforfilter = array();
-	                foreach ($cpts as $i => $cpt): $arrayofaccountforfilter[] = $cpt['account_number']; endforeach;
-
-	                //if($cat['code'] == '290'):var_dump($csv_file); endif;
-
-	                // N-1
-	                if (!empty($arrayofaccountforfilter)):
-	                    
-	                    $return = $AccCat->getSumDebitCredit($arrayofaccountforfilter, $date_start_previous, $date_end_previous, $cat['dc'] ? $cat['dc'] : 0);
-	                    if($mode != 'calcul'):
-	                        //var_dump($arrayofaccountforfilter);
-	                    endif;
-
-	                    if ($return < 0): setEventMessages(null, $AccCat->errors, 'errors'); $resultNP = 0;
-	                    else :
-	                        foreach ($cpts as $i => $cpt):
-	                            $resultNP = empty($AccCat->sdcperaccount[$cpt['account_number']]) ? 0 : $AccCat->sdcperaccount[$cpt['account_number']];
-	                            $totCat['NP'] += $resultNP;
-	                            $sommes[$code]['NP'] += $resultNP;
-	                            $totPerAccount[$cpt['account_number']]['NP'] = $resultNP;
-	                        endforeach;
-	                    endif;
-	                endif;
-
-	                // -- //
-
-	                foreach ($cpts as $i => $cpt):
-
-	                    $resultN = 0;
-	                    foreach ($months as $k => $v):
-	                        $monthtoprocess = $k; // ($k+1) is month 1, 2, ..., 12
-	                        $yeartoprocess = $start_year;
-	                        if (($k + 1) < $start_month) : $yeartoprocess++; endif;
-
-	                        //var_dump($monthtoprocess.'_'.$yeartoprocess);
-	                        $return = $AccCat->getSumDebitCredit($cpt['account_number'], $date_start, $date_end, $cat['dc'] ? $cat['dc'] : 0, 'nofilter', $monthtoprocess, $yeartoprocess);
-
-	                        if ($return < 0): setEventMessages(null, $AccCat->errors, 'errors'); $resultM = 0; else: $resultM = $AccCat->sdc; endif;
-
-	                        $totCat['M'][$k] += $resultM;
-	                        $sommes[$code]['M'][$k] += $resultM;
-	                        $totPerAccount[$cpt['account_number']]['M'][$k] = $resultM;
-
-	                        $resultN += $resultM;
-	                    endforeach;
-
-	                    $totCat['N'] += $resultN;
-	                    $sommes[$code]['N'] += $resultN;
-	                    $totPerAccount[$cpt['account_number']]['N'] = $resultN;
-	                endforeach;
-
-
-	                if($mode != 'calcul'):
-
-	                    $tab_line = array(); $tab_type_line = array();
-	                    $label_cpt = "";
-
-	                    $view .= '<tr class="oddeven pgsz-optiontable-tr">';
-
-	                    // Column group
-	                    $view .= '<td class="">'.$cat['code'].'</td>';
-
-	                    // Label of group
-	                    $view .= '<td>'.$cat['label'];
-
-	                    if (count($cpts) > 0):
-	                    /* MIS EN COMMENTAIRE POUR NE PAS AVOIR LE DETAIL DES GROUPES PERSONNALISES - NUMEROS DE COMPTES SUPERFLUX                  
-	                        $i = 0;
-	                        foreach ($cpts as $cpt):
-
-	                            if ($i > 5): $view .= '...)'; $label_cpt .= '...)'; break; endif;
-
-	                            if ($i > 0): $view .= ', '; $label_cpt .= ', ';
-	                            else : $view .= '('; $label_cpt .= '(';
-	                            endif;
-
-	                            $view .= $cpt['account_number']; $label_cpt .= $cpt['account_number'];
-
-	                            $i++;
-	                        endforeach;
-	                        if ($i <= 5): $view .= ')'; $label_cpt .= ')';endif;*/
-	                    else:
-	                        $view .= ' - <span class="warning">'.$langs->trans('GroupIsEmptyCheckSetup').'</span>';
-	                    endif;
-	                    $view .= '</td>';
-
-	                    $column_group_text = $cat['code'].' '.$cat['label'].' '.$label_cpt;
-	                    array_push($tab_line,$column_group_text);
-	                    array_push($tab_type_line, 'Text');
-
-	                    //$view .= '<td class="right">'.price($totCat['NP']).'</td>';
-	                    $view .= '<td class="right">'.price($totCat['N']).'</td>';
-
-	                    // array_push($tab_line,price($totCat['NP']));
-	                    // array_push($tab_type_line, 'Numeric');
-
-	                    array_push($tab_line,price($totCat['N']));
-	                    array_push($tab_type_line, 'Numeric');
-
-	                    // Each month
-	                    foreach ($totCat['M'] as $k => $v) :
-	                        if (($k + 1) >= $start_month): //var_dump($k, $start_month);
-	                            $view .= '<td class="right">'.price($v).'</td>';        // TODO HERE                    
-	                            array_push($tab_line,price($v));
-	                            array_push($tab_type_line, 'Numeric');
-	                        endif;
-	                    endforeach;
-	                    foreach ($totCat['M'] as $k => $v):
-	                        if (($k + 1) < $start_month):
-	                            $view .= '<td class="right">'.price($v).'</td>';
-	                            array_push($tab_line,price($v));array_push($tab_type_line, 'Numeric');
-	                        endif;
-	                    endforeach;
-
-	                    $view .='</tr>';
-	                    
-	                    $csv_file->write_title($tab_line,$tab_line,$langs,$tab_type_line);
-
-	                    //////////////////////////////////////////
-
-	                    // Loop on detail of all accounts to output the detail
-	                    if ($showaccountdetail != 'no') :
-	                        foreach ($cpts as $i => $cpt):
-
-	                            $resultNP = $totPerAccount[$cpt['account_number']]['NP'];
-	                            $resultN = $totPerAccount[$cpt['account_number']]['N'];
-
-	                            if ($showaccountdetail == 'all' || $resultN != 0):
-
-	                                
-	                                $tab_line = array(); $tab_type_line = array();                              
-
-	                                $view .= '<tr class="oddeven pgsz-optiontable-tr">';
-	                                $view .= '<td></td>'; 
-	                                
-	                                $view .= '<td class="tdoverflowmax200"> &nbsp; &nbsp; '.length_accountg($cpt['account_number']).' - '.$cpt['account_label'].'</td>';
-	                                //$view .= '<td class="right">'.price($resultNP).'</td>';
-	                                $view .= '<td class="right">'.price($resultN).'</td>';
-	                                
-	                                array_push($tab_line,length_accountg($cpt['account_number']).' - '.$cpt['account_label']);array_push($tab_type_line, 'Text');
-	                                //array_push($tab_line,price($resultNP));array_push($tab_type_line, 'Numeric');
-	                                array_push($tab_line,price($resultN));array_push($tab_type_line, 'Numeric');
-	                                
-
-	                                // Make one call for each month
-	                                foreach ($months as $k => $v):
-	                                    if (($k + 1) >= $start_month):
-	                                        $resultM = $totPerAccount[$cpt['account_number']]['M'][$k];
-	                                        $view .= '<td class="right">'.price($resultM).'</td>';                                      
-	                                        array_push($tab_line,price($resultM));array_push($tab_type_line, 'Numeric');                                        
-	                                    endif;
-	                                endforeach;
-
-	                                foreach ($months as $k => $v):
-	                                    if (($k + 1) < $start_month):
-	                                        $resultM = $totPerAccount[$cpt['account_number']]['M'][$k];
-	                                        $view .= '<td class="right">'.price($resultM).'</td>';                                      
-	                                        array_push($tab_line,price($resultM));array_push($tab_type_line, 'Numeric');                                        
-	                                    endif;
-	                                endforeach;
-	                                $view .= "</tr>";
-	                                
-	                                $csv_file->write_title($tab_line,$tab_line,$langs,$tab_type_line);
-	                                
-	                            endif;
-
-	                        endforeach;
-	                    endif;
-	                endif;      
+		    endif;
+
+			//
+			$date_start_obj->add($interval); $i++;
+		endwhile;
+
+		if($mode != 'calcul'):
+			$tab_head .= '</tr>';
+			$csv_file->write_title($tab_labels,$tab_labels,$langs,$tab_type_labels);
+		endif;
+
+		$tab_body = '';
+		$tab_detail = array();
+		$tab_sum = array();
+
+		// Pour chaque categorie comptable
+		foreach ($accountancy_categories as $accountancy_cat):
+
+			$tab_detail[$accountancy_cat['code']] = array();
+			$tab_sum[$accountancy_cat['code']] = 0;
+
+    		// ***************************
+            if (!empty($accountancy_cat['category_type'])): 
+
+            	$formula = $accountancy_cat['formula']; 
+
+            	$result = strtr($formula, $tab_sum);
+	            $r = dol_eval($result, 1);
+	            $tab_sum[$accountancy_cat['code']] = $r;
+
+	            if($mode != 'calcul'):
+	            	$tab_body .= '<tr class="tab-depth-1 gensubtotal">';
+					$tab_body .= '<td><i class="fas fa-folder paddingright" style="color:#666"></i> '.$accountancy_cat['code'].' '.$accountancy_cat['label'].'</td>';
+	            	$tab_body .= '<td class="right" style="white-space:nowrap;">'.price($r).'</td>';
+
+	            	$tab_line = array(); $tab_type_line = array();
+	            	array_push($tab_line,$accountancy_cat['code']);
+	            	array_push($tab_line,$accountancy_cat['label']);
+	            	array_push($tab_line,price($r));
+	                array_push($tab_type_line, 'Text');
+	                array_push($tab_type_line, 'Text');
+	                array_push($tab_type_line, 'Numeric');
 	            endif;
 
-	            if($cat['code'] == '290' && $mode != 'calcul'):
-	                //var_dump($csv_file);
-	            endif;
-	        endforeach;
-	    endif;
+            	foreach($res as $periodkey => $period):
 
-	    // BENEFICE OU PERTE = $sommes[240]['N'];
-	    //return $sommes[240]['N'];
-	    if($mode == 'calcul'): 
+            		$result2 = strtr($formula, $res[$periodkey]['categories']);
+            		$r2 = dol_eval($result2, 1);
+            		$res[$periodkey]['categories'][$accountancy_cat['code']] = $r2;
 
-	        $line_borp = new BookKeepingMod($this->db);
+            		if($mode != 'calcul'):
+		    			$tab_body .= '<td class="right" style="white-space:nowrap;">'.price($r2).'</td>';
+		    			array_push($tab_line,price($r2));
+	                	array_push($tab_type_line, 'Numeric');
+		    		endif;
+		    	endforeach;
+		    	if($mode != 'calcul'):
+		    		$tab_body .= '</tr>';
+		    		$csv_file->write_title($tab_line,$tab_line,$langs,$tab_type_line);
+		    	endif;
+
+
+		    // ***************************
+			else:
+
+				// On récupère tous les comptes de la catégorie
+		    	$cpts = $AccCat->getCptsCat($accountancy_cat['rowid']);
+
+		    	// Pour chaque compte de la categorie
+		    	$cat_html = '';
+
+		    	$tab_detailfull = array();
+		    	$tab_detailtypefull = array();
+
+		    	foreach($cpts as $cpt):
+		    		
+		    		// Pour chaque mois de la periode
+		    		$cpt_html = '';
+		    		$cpt_total = 0;
+		    		$cpt_array = array();
+		    		foreach($res as $periodkey => $period):
+
+		    			if(!isset($tab_detail[$accountancy_cat['code']][$periodkey])): $tab_detail[$accountancy_cat['code']][$periodkey] = 0; endif;
+		    			if(!isset($res[$periodkey]['categories'][$accountancy_cat['code']])): $res[$periodkey]['categories'][$accountancy_cat['code']] = 0; endif;
+
+		    			$return = $AccCat->getSumDebitCredit($cpt['account_number'], $period['period_start'], $period['period_end'], $accountancy_cat['sens'], 'nofilter', $period['month'], $period['year']);
+
+		    			$cpt_total += $AccCat->sdc;
+		    			$tab_detail[$accountancy_cat['code']][$periodkey] += $AccCat->sdc;
+		    			$tab_sum[$accountancy_cat['code']] += $AccCat->sdc;
+		    			$res[$periodkey]['categories'][$accountancy_cat['code']] += $AccCat->sdc;
+
+		    			if($mode != 'calcul'):
+			    			$cpt_html .= '<td class="right" style="white-space:nowrap">'.price($AccCat->sdc).'</td>';
+			    			array_push($cpt_array,price($AccCat->sdc));
+			    		endif;
+
+		    		endforeach;
+
+		    		if (($showaccountdetail == 'all' || $showaccountdetail != 'no' && $cpt_total != 0) && $mode != 'calcul'):
+		    			$cat_html .= '<tr class="tab-depth-2 account-'.$accountancy_cat['code'].'">';
+		    			$cat_html .= '<td><i class="fas fa-clipboard-list paddingright" style="color:#b0bb39"></i> '.$cpt['account_number'].' - '.$cpt['account_label'].'</td>';
+			    		$cat_html .= '<td class="right">'.price($cpt_total).'</td>';
+			    		$cat_html .= $cpt_html;
+			    		$cat_html .= '</tr>';
+
+			    		$tab_linedetail = array();
+						$tab_type_linedetail = array();
+						array_push($tab_linedetail,' ');
+						array_push($tab_linedetail,$cpt['account_number'].' - '.$cpt['account_label']);
+	            		array_push($tab_linedetail,price($cpt_total));
+	                	array_push($tab_type_linedetail, 'Text');
+	                	array_push($tab_type_linedetail, 'Text');
+	                	array_push($tab_type_linedetail, 'Numeric');
+
+	                	foreach($cpt_array as $cpttab):
+
+	                		array_push($tab_linedetail,$cpttab);
+	                		array_push($tab_type_linedetail, 'Numeric');
+
+	                	endforeach;
+	                	
+	                	array_push($tab_detailfull,$tab_linedetail);
+	                	array_push($tab_detailtypefull,$tab_type_linedetail);
+
+			    	endif;
+
+		    	endforeach;
+
+		    	if($mode != 'calcul'):
+			    	$c = '';
+			    	$fa_class = '';
+			    	if(!empty($cat_html)): $c = 'tab-toggle'; $fa_class = 'fa-caret-right';
+			    	else: $fa_class = 'fa-caret-right classB';
+			    	endif;
+
+			    	$tab_body .= '<tr class="tab-depth-1 '.$c.'" data-target="account-'.$accountancy_cat['code'].'">';
+					$tab_body .= '<td><i class="fas '.$fa_class.' icon-toggle paddingright"></i> <i class="fas fa-folder paddingright" style="color:#d2d2d2"></i> '.$accountancy_cat['code'].' '.$accountancy_cat['label'].'</td>';
+					$tab_body .= '<td class="right" style="white-space:nowrap">'.price(array_sum($tab_detail[$accountancy_cat['code']])).'</td>';
+					
+					$tab_line = array();
+					$tab_type_line = array();
+
+					array_push($tab_line,$accountancy_cat['code']);
+					array_push($tab_line,html_entity_decode($accountancy_cat['label']));
+	            	array_push($tab_line,price(array_sum($tab_detail[$accountancy_cat['code']])));
+	                array_push($tab_type_line, 'Text');
+	                array_push($tab_type_line, 'Text');
+	                array_push($tab_type_line, 'Numeric');
+
+					foreach($res as $periodkey => $period):
+						$tab_body .= '<td class="right" style="white-space:nowrap">'.price($tab_detail[$accountancy_cat['code']][$periodkey]).'</td>';
+						array_push($tab_line,price($tab_detail[$accountancy_cat['code']][$periodkey]));
+						array_push($tab_type_line, 'Numeric');
+					endforeach;
+					$tab_body .= '</tr>';
+			    	$tab_body .= $cat_html;
+
+			    	$csv_file->write_title($tab_line,$tab_line,$langs,$tab_type_line);		    	
+
+			    	if(!empty($tab_detailfull)):
+			    		foreach($tab_detailfull as $key => $linearray):		    			
+					    	$csv_file->write_title($linearray,$linearray,$langs,$tab_detailtypefull[$key]);
+			    		endforeach;
+			    	endif;
+			    endif;
+
+		    endif;
+
+		endforeach;
+
+		if($mode == 'calcul'):
+
+			$line_borp = new BookKeepingMod($this->db);
 	        $line_borp->doc_date = $date_end;
 	        $line_borp->piece_num = $line_borp->getNextNumMvt();
 	        
 	        $line_borp->fk_doc = 0;
 	        $line_borp->fk_docdet = 0;
 	        $line_borp->debit = 0;
-	        $line_borp->credit = $sommes[240]['N'];
-	        $line_borp->montant = $sommes[240]['N'];
+	        $line_borp->credit = $tab_sum[240];
+	        $line_borp->montant = $tab_sum[240];
 	        $line_borp->numero_compte = $this->formattedNbNumber('120'); // NBCOUNTER
-	        $line_borp->subledger_label = $langs->trans('gr_borp').' '.$year_actpas[0];
-	        $line_borp->label_operation = $langs->trans('gr_borp').' '.$year_actpas[0];
+	        $line_borp->subledger_label = $langs->trans('gr_borp').' '.$date_end_obj->format('Y');
+	        $line_borp->label_operation = $langs->trans('gr_borp').' '.$date_end_obj->format('Y');
 	        $line_borp->fk_user_author = $user->id;
 
 	        $sql_del_borp = "DELETE FROM ".MAIN_DB_PREFIX."accounting_bookkeeping WHERE numero_compte = ".$line_borp->numero_compte;
 	        $result_borp = $this->db->query($sql_del_borp);
 	        $b = $line_borp->create($user);
 
-	        return $sommes[240]['N'];
-	    else: 
+	        return $tab_sum[240];
 
-	        $csv_file->write_footer($langs);
-	        $csv_file->close_file();
+		else:
+
+			$csv_file->write_footer($langs);
+		    $csv_file->close_file();
 
 	        $tabres = array(
 	            'tab_head' => $tab_head,
-	            'tab_lines' => $view,
+	            'tab_lines' => $tab_body,
 	            'generate_time' => dol_now(),
 	            'files' => $files_rapport,
 	        );
