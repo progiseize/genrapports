@@ -42,7 +42,7 @@ function genrap_AdminPrepareHead(){
         $h++;
     endif;
 
-    complete_head_from_modules($conf, $langs, $object, $head, $h, 'genrapports');
+    complete_head_from_modules($conf, $langs, '', $head, $h, 'genrapports');
 
     return $head;
 }
