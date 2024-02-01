@@ -688,14 +688,14 @@ class GenRapports {
 
 			// On definit la periode
 			if($i == 1): 
-				$periodstart = $date_start_obj->format('Y-m-d');
-				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
+				$periodstart = $date_start_obj->format('Y-m-d H:i:s');
+				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
 			elseif($i == $diffmonth):
-				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
-				$periodend = $date_end_obj->format('Y-m-d');
+				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
+				$periodend = $date_end_obj->format('Y-m-d H:i:s');
 			else: 
-				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
-				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d');
+				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
+				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
 			endif;
 
 			$res[$date_start_obj->format('Y-m')] = array(
@@ -796,7 +796,7 @@ class GenRapports {
 		    			if(!isset($tab_detail[$accountancy_cat['code']][$periodkey])): $tab_detail[$accountancy_cat['code']][$periodkey] = 0; endif;
 		    			if(!isset($res[$periodkey]['categories'][$accountancy_cat['code']])): $res[$periodkey]['categories'][$accountancy_cat['code']] = 0; endif;
 
-		    			$return = $AccCat->getSumDebitCredit($cpt['account_number'], $period['period_start'], $period['period_end'], $accountancy_cat['sens'], 'nofilter', $period['month'], $period['year']);
+		    			$return = $AccCat->getSumDebitCredit($cpt['account_number'], $period['period_start'], $period['period_end'], $accountancy_cat['sens'], 'nofilter');
 
 		    			$cpt_total += $AccCat->sdc;
 		    			$tab_detail[$accountancy_cat['code']][$periodkey] += $AccCat->sdc;
@@ -862,8 +862,9 @@ class GenRapports {
 	                array_push($tab_type_line, 'Numeric');
 
 					foreach($res as $periodkey => $period):
-						$tab_body .= '<td class="right" style="white-space:nowrap">'.price($tab_detail[$accountancy_cat['code']][$periodkey]).'</td>';
-						array_push($tab_line,price($tab_detail[$accountancy_cat['code']][$periodkey]));
+						$periodamount = (isset($tab_detail[$accountancy_cat['code']][$periodkey]))?$tab_detail[$accountancy_cat['code']][$periodkey]:0;
+						$tab_body .= '<td class="right" style="white-space:nowrap">'.price($periodamount).'</td>';
+						array_push($tab_line,price($periodamount));
 						array_push($tab_type_line, 'Numeric');
 					endforeach;
 					$tab_body .= '</tr>';

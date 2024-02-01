@@ -1,5 +1,9 @@
 # GenRapports
 
+### 1.6.2
+* FIX - Correction des rapports de date à date (les valeurs ne prennent plus en compte les mois entiers)
+* FIX - Corrections divers warning PHP
+
 ### 1.6.1
 * FIX - compatibilité v18 ExportCsv
 * FIX - revue et modification de la fonction tableau_resultat
