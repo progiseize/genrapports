@@ -1,5 +1,10 @@
 # GenRapports
 
+### 1.6.3
+* FIX - Correction fuseaux horaires
+* FIX - Correction date de fin d'année si année bissextile
+* FIX - Correction doublon t.import_key SQL
+
 ### 1.6.2
 * FIX - Correction des rapports de date à date (les valeurs ne prennent plus en compte les mois entiers)
 * FIX - Corrections divers warning PHP

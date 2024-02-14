@@ -39,14 +39,9 @@
  * 
  * ADD : $sql .= ", t.extraparams";
  * 
- * OLD: $sqlwhere[] = $key.'=\''.$this->db->idate($value).'\'';
- * NEW: $sqlwhere[] = $key.'=\''.$value.'\'';
  * 
  * ADD : $line->entity = $obj->entity;
- * 
- * OLD : $line->doc_date = $this->db->jdate($obj->doc_date);
- * NEW : $line->doc_date = $obj->doc_date;
- * 
+ *
  * */
 
 /**
@@ -370,8 +365,8 @@ class BookKeepingMod extends BookKeeping
 			$sql .= " t.date_creation,";
 			$sql .= " t.date_export,";
 			$sql .= " t.date_validated as date_validation,";
-			$sql .= " t.import_key";
-			$sql .= ", t.extraparams";
+			$sql .= " t.extraparams,";
+			$sql .= " t.entity";
 		}
 		// Manage filter
 		$sqlwhere = array();

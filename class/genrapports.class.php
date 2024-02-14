@@ -279,35 +279,35 @@ class GenRapports {
 	    //////////////////////////////////////////////////
 
 	    // ON DEFINIT LE REPERTOIRE PRINCIPAL ET ON LE CREE SI BESOIN
-	        $dir = DOL_DATA_ROOT.'/genrapports';
-	        if (!is_dir($dir)): if(!mkdir($dir,0755)): setEventMessages($langs->trans('gr_error_crea_folder'), null, 'errors'); endif; endif;
+        $dir = DOL_DATA_ROOT.'/genrapports';
+        if (!is_dir($dir)): if(!mkdir($dir,0755)): setEventMessages($langs->trans('gr_error_crea_folder'), null, 'errors'); endif; endif;
 
-	        $d = date('d-m-Y');
-	        $dir_day = $dir.'/'.$d;
-	        if (!is_dir($dir_day)): if(!mkdir($dir_day,0755)): setEventMessages($langs->trans('gr_error_crea_folder'), null, 'errors'); endif; endif;
+        $d = date('d-m-Y');
+        $dir_day = $dir.'/'.$d;
+        if (!is_dir($dir_day)): if(!mkdir($dir_day,0755)): setEventMessages($langs->trans('gr_error_crea_folder'), null, 'errors'); endif; endif;
 
-	        $version = explode('.', DOL_VERSION); // ON RECUPERE LA VERSION DE DOLIBARR
-	        if(intval($version[0]) >= 18): $csv_details = new ExportCsvUtf8($this->db);
-	        else: $csv_details = new ExportCsv($this->db);
-	        endif;
+        $version = explode('.', DOL_VERSION); // ON RECUPERE LA VERSION DE DOLIBARR
+        if(intval($version[0]) >= 18): $csv_details = new ExportCsvUtf8($this->db);
+        else: $csv_details = new ExportCsv($this->db);
+        endif;
 
-	        // ON DONNE UN NOM AU FICHIER
-	        $file_title = 'genrapports-bookkeepings-'.$num_compte.'-'.$d.'.'.$csv_details->extension;
+        // ON DONNE UN NOM AU FICHIER
+        $file_title = 'genrapports-bookkeepings-'.$num_compte.'-'.$d.'.'.$csv_details->extension;
 
-	        // ON DEFINIT LE CHEMIN COMPLET DU FICHIER
-	        $dir_file = $dir_day.'/'.$file_title;
-	        $download_file = urlencode($d.'/'.$file_title);
+        // ON DEFINIT LE CHEMIN COMPLET DU FICHIER
+        $dir_file = $dir_day.'/'.$file_title;
+        $download_file = urlencode($d.'/'.$file_title);
 
-	        // ON OUVRE LE FICHIER
-	        $csv_details->open_file($dir_file,$langs);
+        // ON OUVRE LE FICHIER
+        $csv_details->open_file($dir_file,$langs);
 
-	        // ON ECRIT LE HEADER DU FICHIER
-	        $csv_details->write_header($langs);
+        // ON ECRIT LE HEADER DU FICHIER
+        $csv_details->write_header($langs);
 
-	        $tab_labels = array($langs->trans('gr_file_tablabel_compteaux'),$langs->trans('gr_file_tablabel_label'),$langs->trans('gr_file_tablabel_credit'),$langs->trans('gr_file_tablabel_debit'),$langs->trans('gr_file_tablabel_diff'));
-	        $tab_type_labels = array('Text','Text','Text','Text','Text');
+        $tab_labels = array($langs->trans('gr_file_tablabel_compteaux'),$langs->trans('gr_file_tablabel_label'),$langs->trans('gr_file_tablabel_credit'),$langs->trans('gr_file_tablabel_debit'),$langs->trans('gr_file_tablabel_diff'));
+        $tab_type_labels = array('Text','Text','Text','Text','Text');
 
-	        $csv_details->write_title($tab_labels,$tab_labels,$langs,$tab_type_labels);
+        $csv_details->write_title($tab_labels,$tab_labels,$langs,$tab_type_labels);
 
 	    //////////////////////////////////////////////////
 
@@ -318,10 +318,14 @@ class GenRapports {
 	    $params = array();
 	    $params['t.'.$row] = $num_compte;
 
-	    if(!empty($date_start)): $params['t.doc_date>='] = $date_start.' 00:00:00'; endif;
-	    if(!empty($date_end)): $params['t.doc_date<='] = $date_end.' 23:59:59'; endif;
+	    if(!empty($date_start)):
+	    	$params['t.doc_date>='] = dol_get_first_hour(dol_stringtotime($date_start));
+	    endif;
+	    if(!empty($date_end)):
+	    	$params['t.doc_date<='] = dol_get_last_hour(dol_stringtotime($date_end));
+	    endif;
 
-	    $books->fetchAllByAccount('','',$limit = '',$offset = '',$params); // 
+	    $books->fetchAllByAccount('','',$limit = '',$offset = '',$params,'AND',1); // 
 
 	    $passif = 0;
 	    $actif = 0;
@@ -337,7 +341,6 @@ class GenRapports {
 	        $lock_datestop = $date_end;
 	        $lock_date = date('Y-m-d H:i:s');
 	        $lock_user = $user->id;
-
 	        $this->db->begin();
 	    endif;
 
@@ -354,7 +357,7 @@ class GenRapports {
 	            if(!array_key_exists($label_compte, $tab_details)): $tab_details[$label_compte] = array(); endif;
 
 	            // ON INSERE LE MONTANT (CREDIT+ DEBIT-) DANS TAB[compte_auxiliaire]
-	            array_push($tab_details[$label_compte],array('credit' => $bookline->credit, 'debit' => $bookline->debit,'label'=> $bookline->subledger_label));
+	            array_push($tab_details[$label_compte],array('credit' => $bookline->credit, 'debit' => $bookline->debit,'label'=> $bookline->subledger_label,'doc_ref' => $bookline->doc_ref));
 
 	            if($mode == "save"):
 
@@ -386,8 +389,6 @@ class GenRapports {
 	                if (!$resql): $error++; $errors[] = 'ID:'.$bookline->id.' :: Error '.$this->db->lasterror(); endif;
 
 	            endif;
-
-	        //else: $label_compte = 'cpt-INCONNU'; 
 	        endif;
 
 	    endforeach;
@@ -421,8 +422,12 @@ class GenRapports {
 
 	        $result_nbk = $this->db->query($sql_nbk);
 	        if($result_nbk):
-	            $row_nbk = $this->db->fetch_object($result_nbk);
-	            $label_compte_aux = $row_nbk->nom;
+
+	        	$label_compte_aux = '';
+	        	if($result_nbk->num_rows > 0):
+	        		$row_nbk = $this->db->fetch_object($result_nbk);
+	            	$label_compte_aux = $row_nbk->nom;
+	            endif;
 	            if(empty($label_compte_aux)): $label_compte_aux = strval($nbk); endif;
 	        endif;
 
@@ -439,8 +444,8 @@ class GenRapports {
 	    endforeach; 
 
 	    foreach ($tab_totaux as $compte_auxiliaire => $total):
-	        
-	        $difference = round($total['credit'],2) - round($total['debit'],2);
+
+	    	$difference = round($total['credit'],2) - round($total['debit'],2);
 
 	        if($difference > 0): $passif += $difference;
 	        else: $actif += $difference;endif;
@@ -657,7 +662,6 @@ class GenRapports {
 		// On recupère les catégories
 		$AccCat = new AccountancyCategoryMod($this->db);
 	    $accountancy_categories = $AccCat->getCats(-1,1); // All and active
-
 	    if (!is_array($accountancy_categories) && $accountancy_categories < 0): setEventMessages(null, $AccCat->errors, 'errors'); return false; endif;
 
 		// 
@@ -688,14 +692,14 @@ class GenRapports {
 
 			// On definit la periode
 			if($i == 1): 
-				$periodstart = $date_start_obj->format('Y-m-d H:i:s');
-				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
+				$periodstart = dol_get_first_hour(dol_stringtotime($date_start_obj->format('Y-m-d'))); 
+				$periodend = dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m'));
 			elseif($i == $diffmonth):
-				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
-				$periodend = $date_end_obj->format('Y-m-d H:i:s');
+				$periodstart = dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m'));
+				$periodend = dol_get_last_hour(dol_stringtotime($date_end_obj->format('Y-m-d')));
 			else: 
-				$periodstart = dol_print_date(dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
-				$periodend = dol_print_date(dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m')),'%Y-%m-%d %H:%M:%S');
+				$periodstart = dol_get_first_day($date_start_obj->format('Y'), $date_start_obj->format('m'));
+				$periodend = dol_get_last_day($date_start_obj->format('Y'), $date_start_obj->format('m'));
 			endif;
 
 			$res[$date_start_obj->format('Y-m')] = array(
@@ -785,7 +789,8 @@ class GenRapports {
 		    	$tab_detailfull = array();
 		    	$tab_detailtypefull = array();
 
-		    	foreach($cpts as $cpt):
+		    	$cc = 0;
+		    	foreach($cpts as $cpt): $cc++;
 		    		
 		    		// Pour chaque mois de la periode
 		    		$cpt_html = '';
@@ -796,8 +801,8 @@ class GenRapports {
 		    			if(!isset($tab_detail[$accountancy_cat['code']][$periodkey])): $tab_detail[$accountancy_cat['code']][$periodkey] = 0; endif;
 		    			if(!isset($res[$periodkey]['categories'][$accountancy_cat['code']])): $res[$periodkey]['categories'][$accountancy_cat['code']] = 0; endif;
 
-		    			$return = $AccCat->getSumDebitCredit($cpt['account_number'], $period['period_start'], $period['period_end'], $accountancy_cat['sens'], 'nofilter');
-
+		    			$return = $AccCat->getSumDebitCredit($cpt['account_number'], $period['period_start'], $period['period_end'], $accountancy_cat['bc'], 'nofilter');
+		    			
 		    			$cpt_total += $AccCat->sdc;
 		    			$tab_detail[$accountancy_cat['code']][$periodkey] += $AccCat->sdc;
 		    			$tab_sum[$accountancy_cat['code']] += $AccCat->sdc;

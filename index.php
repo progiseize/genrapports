@@ -42,7 +42,8 @@ elseif(intval($version[0]) == 16): require_once 'class/bookkeepingmod_v16.class.
 elseif(intval($version[0]) == 15): require_once 'class/bookkeepingmod_v15.class.php'; // 15 
 elseif(intval($version[0]) == 14): require_once 'class/bookkeepingmod_v14.class.php'; // 14 
 elseif(intval($version[0]) == 13): require_once 'class/bookkeepingmod_v13.class.php'; // 13
-elseif(intval($version[0]) <= 12): require_once 'class/bookkeepingmod_v12.class.php'; // 12 et inférieurs (non testées)
+elseif(intval($version[0]) <= 12): 
+	accessforbidden('NeedDolibarrMinVersion13');
 endif;
 
 require_once DOL_DOCUMENT_ROOT.'/accountancy/class/accountancycategory.class.php';
@@ -64,8 +65,6 @@ dol_include_once('./genrapports/class/genrapports.class.php');
 
 $genrapports = new GenRapports($db);
 
-date_default_timezone_set('Europe/Paris');
-
 /*******************************************************************
 * VARIABLES
 ********************************************************************/
@@ -81,15 +80,19 @@ $date_start = GETPOST('gen-datestart');
 $date_end = GETPOST('gen-dateend');
 
 if(empty($date_start)):
-
 	$month_start = $conf->global->SOCIETE_FISCAL_MONTH_START;
 	if($month_start <= 9): $month_start = '0'.$month_start; endif;
 	$date_start = date('Y').'-'.$month_start.'-01';
-
 endif;
 if(empty($date_end)):
-	$date_end = date('Y-m-d',strtotime(date("Y-m-d", strtotime($date_start)) . " + 364 day")); 
-	//$date_end = date('Y').'-12-31'; 
+	$ystart = intval(date("Y", strtotime($date_start)));
+	
+	// Année bissextile
+	if ($ystart % 400 == 0 || $ystart % 4 == 0): $day_toadd = 365; 
+    else: $day_toadd = 364;
+    endif;
+
+    $date_end = date('Y-m-d',strtotime(date("Y-m-d", strtotime($date_start)) . " + ".$day_toadd." day"));
 endif;
 
 $now = dol_now();
