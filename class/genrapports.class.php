@@ -615,7 +615,6 @@ class GenRapports {
 	public function tableau_resultat($date_start,$date_end,$showaccountdetail,$mode = '',$action = 'bilan',$array_of_files = array()){ 
 
 		global $conf, $user, $langs;
-
 		
 		// SI ON EST PAS EN MODE CALCUL, ON CREE UN FICHIER D'EXPORT
 	    if($mode != 'calcul'):

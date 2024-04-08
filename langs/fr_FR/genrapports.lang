@@ -1,4 +1,4 @@
-Module300306Name=GenRapports
+Module300304Name=GenRapports
 gr_setup_title=Options générales
 gr_setup_howmany_numbers=Combien de numéros utliser pour les numéros de comptes ?
 gr_export_type_bilan=Bilan

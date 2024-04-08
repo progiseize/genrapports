@@ -1,5 +1,8 @@
 # GenRapports
 
+### 1.6.4
+* FIX - Correction numéro module fichiers .langs
+
 ### 1.6.3
 * FIX - Correction fuseaux horaires
 * FIX - Correction date de fin d'année si année bissextile
