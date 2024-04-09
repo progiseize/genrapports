@@ -200,7 +200,7 @@ endif;
 $array_js = array();
 $array_css = array('/genrapports/css/genrapports.css');
 
-llxHeader('',$langs->trans('Module300306Name'),'','','','',$array_js,$array_css); ?>
+llxHeader('',$langs->trans('Module300304Name'),'','','','',$array_js,$array_css); ?>
 
 <!-- CONTENEUR GENERAL -->
 <div id="pgsz-option" class="genrapports">
