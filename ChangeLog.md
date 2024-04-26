@@ -1,5 +1,8 @@
 # GenRapports
 
+### 1.6.5
+* FIX - Remove module descriptor url_last_version
+
 ### 1.6.4
 * FIX - Correction numéro module fichiers .langs
 
