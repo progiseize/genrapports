@@ -1,5 +1,8 @@
 # GenRapports
 
+### 1.6.6
+* FIX - Remove old menu progiseize
+
 ### 1.6.5
 * FIX - Remove module descriptor url_last_version
 

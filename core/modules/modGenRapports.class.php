@@ -67,7 +67,7 @@ class modGenRapports extends DolibarrModules
         $this->editor_url = 'https://progiseize.fr';
         
         // Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
-        $this->version = '1.6.5';
+        $this->version = '1.6.6';
         //$this->url_last_version = "https://progiseize.fr/modules_info/lastversion.php?module=".$this->numero;
         // Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
         $this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
@@ -244,53 +244,7 @@ class modGenRapports extends DolibarrModules
         $this->menu = array();          // List of menus to add
         $r=0;
 
-        $this->menu[$r]=array( 
-            'fk_menu'=>'fk_mainmenu=progiseize',
-            'type'=>'left',
-            'titre'=> $this->name,
-            'mainmenu'=>'progiseize',
-            'leftmenu'=> $this->rights_class,
-            'url'=>'/genrapports/index.php', 'langs'=>'progiseize@progiseize', 'position'=> $this->module_position,
-            'enabled'=>'1', 'perms'=>'1','target'=>'', 'user'=>2,
-            'prefix' => '<span class="fas fa-search-dollar" style="color: #6c6aa8;margin-right:3px;"></span> '
-        );
-        $r++;
-
-        /*--------------- */
-        
-        $this->menu[$r]=array(
-            'fk_menu'=>'fk_mainmenu=progiseize,fk_leftmenu='.$this->rights_class,
-            'type'=>'left',
-            'titre'=>'Rapports personnalisés',
-            'mainmenu'=>'',
-            'leftmenu'=>'',
-            'url'=>'/genrapports/index.php',
-            'langs'=>'genrapports@genrapports',
-            'position'=> $this->module_position + $r,
-            'enabled'=> '$conf->genrapports->enabled',
-            'perms'=> '$user->rights->genrapports->executer',
-            'target'=>'',
-            'user'=>2
-        );
-        $r++;
-
-        $this->menu[$r]=array(
-            'fk_menu'=>'fk_mainmenu=progiseize,fk_leftmenu='.$this->rights_class,
-            'type'=>'left',
-            'titre'=>'Configurer',
-            'mainmenu'=>'',
-            'leftmenu'=>'',
-            'url'=>'/genrapports/admin/setup.php',
-            'langs'=>'genrapports@genrapports',
-            'position'=> $this->module_position + $r,
-            'enabled'=> '$conf->genrapports->enabled',
-            'perms'=> '$user->rights->genrapports->executer',
-            'target'=>'',
-            'user'=>2
-        );
-        $r++;
-
-        $this->menu[$r]=array(
+        $this->menu[$r++]=array(
             'fk_menu'=>'fk_mainmenu=accountancy',
             'type'=>'left',
             'titre'=>'GenRapports',
@@ -298,14 +252,13 @@ class modGenRapports extends DolibarrModules
             'leftmenu'=>'',
             'url'=>'/genrapports/index.php',
             'langs'=>'genrapports@genrapports',
-            'position'=> $this->module_position + $r,
+            'position'=> intval($this->module_position) + $r,
             'enabled'=> '$conf->genrapports->enabled',
             'perms'=> '$user->rights->genrapports->executer',
             'target'=>'',
-            'user'=>2
+            'user'=> 0
         );
         $r++;
-
 
         /*--------------- */
 
