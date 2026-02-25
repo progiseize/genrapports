@@ -68,7 +68,7 @@ class modGenRapports extends DolibarrModules
         
         // Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
         $this->version = '1.6.6';
-        //$this->url_last_version = "https://progiseize.fr/modules_info/lastversion.php?module=".$this->numero;
+        $this->url_last_version = "https://modules-api.progiseize.fr/modules/version/300304";
         // Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
         $this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
         // Name of image file used for this module.
@@ -349,4 +349,5 @@ class modGenRapports extends DolibarrModules
     }
 
 }
+
 
