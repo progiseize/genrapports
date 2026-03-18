@@ -440,7 +440,7 @@ class BookKeepingMod extends BookKeeping
 
 				$i = 0;
 				while (($obj = $this->db->fetch_object($resql)) && (empty($limit) || $i < min($limit, $num))) {
-					$line = new BookKeepingLine();
+					$line = new BookKeepingLine($this->db);
 
 					$line->id = $obj->rowid;
 					$line->entity = $obj->entity;
